@@ -3,9 +3,12 @@
 ##A Survival Horror Farming Simulator
 ######by Colin Watts, Nathan Watts, Brian Rappaport, and Quinn Collins
 
+
 ###Controls:
-#####-Move the player with WASD
+#####&emsp;-Move the player with WASD
+#####&emsp;-1-9 or scroll wheel to switch between items
+#####&emsp;-left click to use items
 
 ###Objective:
-#####-kill the plants to get resources
-#####-don't die
+#####&emsp;-kill the plants to get resources
+#####&emsp;-don't die

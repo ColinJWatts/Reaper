@@ -1,4 +1,4 @@
-var plant = function(){
+var plant = function(x, y){
 	this.growSpeed = 0;
 	this.spreadRate = 0; 
 	this.spawnRate = 0; //low spawn rate means more mobs
@@ -10,6 +10,8 @@ var plant = function(){
 	this.lastSpread = 0;
 
 	this.playerDamage = 0;
+
+	this.sprite = new sprite(game, x, y, 'black');
 }
 
 
@@ -23,6 +25,10 @@ plant.prototype.update = function(){
 		this.spread(this.age-this.lastSpread);
 		this.lastSpread += this.spreadRate;
 	}
+}
+
+plant.prototype.render(){
+	
 }
 
 //grow plants for time "time"

@@ -1,23 +1,36 @@
 //main.js
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });
 
 function preload() {
 
-	game.load.image('sky', 'assets/sky.png');
-	game.load.image('ground', 'assets/platform.png');
-	game.load.image('star', 'assets/star.png');
-	game.load.spritesheet('dude', 'assets/dude.png',32,48);
+	game.load.image('black', 'assets/black.png');
+	game.load.image('blue', 'assets/blue.png');
+	game.load.image('cyan', 'assets/cyan.png');
+	game.load.image('green', 'assets/green.png');
+	game.load.image('magenta', 'assets/magenta.png');
+	game.load.image('red', 'assets/red.png');
+	game.load.image('white', 'assets/white.png');
+	game.load.image('yellow', 'assets/yellow.png');
 
 	
 
 }
 
 
-var score = 0;
-var scoreText;
-
 function create() {
+
+//START OF ACTUAL CODE
+
+
+initPlayer(20,20);
+
+
+
+
+
+
+//END OF ACTUAL CODE
 
 	//game.add.sprite(0,0,'star');
 	game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -78,6 +91,21 @@ function create() {
 }
 
 function update() {
+
+
+	//START OF ACTUAL CODE
+	updatePlayer();
+
+
+
+
+
+
+	//END OF ACTUAL CODE
+
+
+
+
 
 	game.physics.arcade.collide(player, platforms);
 

@@ -33,7 +33,7 @@ initPlayer(20,20);
 //END OF ACTUAL CODE
 
 	//game.add.sprite(0,0,'star');
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+/*	game.physics.startSystem(Phaser.Physics.ARCADE);
 
 	game.add.sprite(0,0,'sky');
 
@@ -86,7 +86,7 @@ initPlayer(20,20);
 		star.body.bounce.y = 0.7 + Math.random() * .2;
 	}
 
-	scoreText = game.add.text(16,16,'Score: 0', {fontSize: '32px', fill: '#000'});
+	scoreText = game.add.text(16,16,'Score: 0', {fontSize: '32px', fill: '#000'});*/
 
 }
 
@@ -106,7 +106,7 @@ function update() {
 
 
 
-
+/*
 	game.physics.arcade.collide(player, platforms);
 
 	player.body.velocity.x = 0;
@@ -136,13 +136,14 @@ function update() {
 	//Stars
 
 	game.physics.arcade.collide(stars, platforms);
-	game.physics.arcade.overlap(player, stars, collectStar, null, this);
+	game.physics.arcade.overlap(player, stars, collectStar, null, this);*/
 }
 
-
+/*
 function collectStar(player, star) {
 
 	star.kill();
 	score += 10;
 	scoreText.text = 'Score: ' +score;
 }
+*/

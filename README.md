@@ -2,7 +2,7 @@
 #####*Resistance is Fertile*
 
 ##A Survival Horror Farming Simulator
-######by Colin Watts, Nathan Watts, Brian Rappaport, and Quinn Collins
+#####by Colin Watts, Nathan Watts, Brian Rappaport, and Quinn Collins
 
 
 ###Controls:

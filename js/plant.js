@@ -1,26 +1,29 @@
-var plant = function(x, y){
-	this.growSpeed = 0;
-	this.spreadRate = 0; 
-	this.spawnRate = 0; //low spawn rate means more mobs
-	this.spawnThresh = 0;
-	this.spreadThresh = 0;
+Plant.prototype = Object.create(Phaser.Sprite.prototype);
+Plant.prototype.constructor = Plant;
+Plant.prototype.growSpeed = 0;
+Plant.prototype.spreadRate = 0;
+Plant.prototype.spawnrate = 0; //low spawn rate means more mobs
+Plant.prototype.spawnThresh = 0;
+Plant.prototype.spreadThresh = 0;
+Plant.prototype.age = 0;
+Plant.prototype.lastSpawn = 0;
+Plant.prototype.lastSpread = 0;
+Plant.prototype.playerDamage = 0;
+Plant.prototype.farmX = 0;
+Plant.prototype.farmY = 0;
 
-	this.age = 0;
-	this.lastSpawn = 0;
-	this.lastSpread = 0;
+Plant.prototype.Plant = function(x, y){
 
-	this.playerDamage = 0;
-
-	this.x = x;
-	this.y = y;
+	this.farmX = x;
+	this.farmY = y;
 
 	this.sprite = new sprite(game, x*64, y*64, 'black');
 }
 
 
-plant.prototype.tick = function(farm){
+Plant.prototype.tick = function(farm, time){
 	this.render();
-	this.grow(game.time.elapsed);
+	this.grow(time);
 	if(this.age > this.spawnThresh && this.lastSpawn + this.spawnRate < this.age - this.spawnThresh){
 		this.spawn();
 		this.lastSpawn += this.spawnRate;
@@ -31,21 +34,21 @@ plant.prototype.tick = function(farm){
 	}
 }
 
-plant.prototype.render(){
+Plant.prototype.render = function(){
 	
 }
 
 //grow plants for time "time"
-plant.prototype.grow(time){
+Plant.prototype.grow = function(time){
 	this.age += this.growSpeed * time;
 }
 
 //spawn mobs
-plant.prototype.spawn(){
+Plant.prototype.spawn = function(){
 	//create mob
 }
 
 //spread more plants
-plant.prototype.spread(age, farm){
+Plant.prototype.spread = function(age, farm){
 	//create plant with age "age" somewhere in field "farm"
 }

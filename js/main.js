@@ -21,9 +21,7 @@ function preload() {
 function create() {
 
 //START OF ACTUAL CODE
-
-
-initPlayer(20,20);
+	player = new Player(game, 20, 20);
 
 
 
@@ -94,7 +92,7 @@ function update() {
 
 
 	//START OF ACTUAL CODE
-	updatePlayer();
+	
 
 
 

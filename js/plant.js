@@ -11,18 +11,22 @@ var plant = function(x, y){
 
 	this.playerDamage = 0;
 
-	this.sprite = new sprite(game, x, y, 'black');
+	this.x = x;
+	this.y = y;
+
+	this.sprite = new sprite(game, x*64, y*64, 'black');
 }
 
 
-plant.prototype.update = function(){
+plant.prototype.tick = function(farm){
+	this.render();
 	this.grow(game.time.elapsed);
-	if(this.age > this.spawnThresh && this.lastSpawn + this.spawnRate < this.age){
+	if(this.age > this.spawnThresh && this.lastSpawn + this.spawnRate < this.age - this.spawnThresh){
 		this.spawn();
 		this.lastSpawn += this.spawnRate;
 	}
-	if(this.age > this.spreadThresh && this.lastSpread + this.spreadRate < this.age){
-		this.spread(this.age-this.lastSpread);
+	if(this.age > this.spreadThresh && this.lastSpread + this.spreadRate < this.age - this.spreadThresh){
+		this.spread(this.age-this.lastSpread, farm);
 		this.lastSpread += this.spreadRate;
 	}
 }
@@ -42,6 +46,6 @@ plant.prototype.spawn(){
 }
 
 //spread more plants
-plant.prototype.spread(age){
-	//create plant with age "age"
+plant.prototype.spread(age, farm){
+	//create plant with age "age" somewhere in field "farm"
 }

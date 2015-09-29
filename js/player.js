@@ -1,9 +1,19 @@
-function initPlayer(x,y) {
-	player = game.add.sprite(x, y, 'dude');
-	inventory = [0 0 0 0 0 0 0 0 0 0];
+Player.prototype = Object.create(Phaser.Sprite.prototype);
+
+Player.prototype.constructor = Player;
+
+Player.prototype.force = {x:0.0, y:0.0}; 
+
+
+function Player(game, x, y) {
+    Phaser.Sprite.call(this, game, x, y, 'red');
+    inventory = [0 0 0 0 0 0 0 0 0 0];
+    //this.scale.set(0.05, 0.05);
+    //this.anchor.setTo(0.5, 0.5);
+    game.add.existing(this);
 }
 
-function updatePlayer() {
+Player.prototype.update = function() {
 	movePlayer();
 	checkUsedItem();
 }
@@ -23,15 +33,16 @@ function movePlayer() {
 }//Phaser.Keyboard.SPACEBAR
 
 function checkUsedItem(){
-	// inventory management
-	invSlots = [1 2 3 4 5 6 7 8 9 0];
 	for (var i = 0;i<10;i++){
 		var j = i+"";
-		if (cursors.j.isDown)
-			useItem(i);
+		//if (cursors.j.isDown)
+		//	useItem(inventory(i));
 	}
 }
-
-function useItem(i){
-
+/*
+function useItem(item){
+	if(item != 0) {
+		if()
+	}
 }
+*/

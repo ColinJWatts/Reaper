@@ -1,4 +1,4 @@
-var field = function(size)
+var field = function(size){
 	this.size = size;
 	var grid;
 	for(var i = 0; i < this.size; i++){

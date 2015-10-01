@@ -1,5 +1,5 @@
 var examplePlant = function(game, x, y){
-
+	this.game = game;
 	this.farmX = x;
 	this.farmY = y;
 

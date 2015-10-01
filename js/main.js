@@ -21,7 +21,9 @@ function preload() {
 function create() {
 
 //START OF ACTUAL CODE
-	player = new Player(game, 20, 20);
+	var field = new Field(game, 10);
+
+	field.add(examplePlant, 5, 5);
 
 
 

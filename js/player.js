@@ -4,13 +4,15 @@ Player.prototype.constructor = Player;
 
 //Player.prototype.force = {x:0.0, y:0.0}; 
 
+var cursors;
+
 function Player(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
     inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
 
     this.cursors = game.input.keyboard.createCursorKeys();
-	var cursors = {
+	cursors = {
     up: game.input.keyboard.addKey(Phaser.Keyboard.UP),
     down: game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
     left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),

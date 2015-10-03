@@ -11,9 +11,11 @@ function Player(game, x, y) {
     inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
 
+    this.position.x = x;
+    this.position.y = y;
+
     this.cursors = game.input.keyboard.createCursorKeys();
 	cursors = {
-
     up: game.input.keyboard.addKey(Phaser.Keyboard.UP),
     down: game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
     left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),

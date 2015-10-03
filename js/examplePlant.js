@@ -14,7 +14,7 @@ function examplePlant(game, x, y){
 	this.farmY = y;
 
 	game.add.existing(this);
-	console.log("added examplePlant");
+	//console.log("added examplePlant");
 }
 
 

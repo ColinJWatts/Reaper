@@ -17,15 +17,11 @@ function preload() {
 
 function create() {
 
-<<<<<<< HEAD
-//START OF ACTUAL CODE
 	var field = new Field(game, 10);
 
 	field.add(examplePlant, 5, 5);
-=======
-	player = new Player(game, 20, 20);
->>>>>>> eb75f40aa4465528fa359494463c39f9cf19ca0a
 
+	player = new Player(game, 20, 20);
 }
 
 function update() {

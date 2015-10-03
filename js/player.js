@@ -8,7 +8,7 @@ var cursors;
 
 function Player(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
-    inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    inventory = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
 
     this.position.x = x;
@@ -25,14 +25,28 @@ function Player(game, x, y) {
     s: game.input.keyboard.addKey(Phaser.Keyboard.S),
     a: game.input.keyboard.addKey(Phaser.Keyboard.A),
     d: game.input.keyboard.addKey(Phaser.Keyboard.D),
-	};
+	//};
+
+	//this.numKeys = game.input.keyboard.createCursorKeys();
+	//numKeys = {
+    k0: game.input.keyboard.addKey(Phaser.Keyboard.ZERO),
+    k1: game.input.keyboard.addKey(Phaser.Keyboard.ONE),
+    k2: game.input.keyboard.addKey(Phaser.Keyboard.TWO),
+    k3: game.input.keyboard.addKey(Phaser.Keyboard.THREE),
+    k4: game.input.keyboard.addKey(Phaser.Keyboard.FOUR),
+    k5: game.input.keyboard.addKey(Phaser.Keyboard.FIVE),
+    k6: game.input.keyboard.addKey(Phaser.Keyboard.SIX),
+    k7: game.input.keyboard.addKey(Phaser.Keyboard.SEVEN),
+    k8: game.input.keyboard.addKey(Phaser.Keyboard.EIGHT),
+    k9: game.input.keyboard.addKey(Phaser.Keyboard.NINE),
+    };
 
     game.add.existing(this);
 }
 
 Player.prototype.update = function() {
 	movePlayer();
-	//checkUsedItem();
+	checkUsedItem();
 }
 
 function movePlayer() {
@@ -46,18 +60,37 @@ function movePlayer() {
 	if (cursors.down.isDown || cursors.s.isDown)
 		player.y += 3;
 }
-/*
+
 function checkUsedItem(){
-	for (var i = 0;i<10;i++){
-		var j = i+"";
+
+	if(cursors.k0.justPressed(1))
+		useItem(inventory[0]);
+	if(cursors.k1.justPressed(1))
+		useItem(inventory[1]);
+
+/*
+		var i = 0;i<10;i++){
+		var j = "k"+i;
 		if (cursors.j.isDown)
 			useItem(inventory(i));
-	}
+	}*/
 }
 
 function useItem(item){
-	if(item != 0) {
-		if()
-	}
+		//Hoe
+	if (item == 1){
+		useHoe();
+	}/*
+		//Scythe
+		case 2: 
+			useScythe();
+			break;
+		//Gun: useGun(1) = basic gun, useGun(2) = more advanced, etc.
+		case 3: 
+			useGun(1);
+			break;
+		case 4: 
+			useGun(2);
+			break;
+			*/
 }
-*/

@@ -21,7 +21,7 @@ function create() {
 
 	field.add(examplePlant, 0, 1, 1);
 
-	player = new Player(game, 20, 20);
+	player = new Player(game, 200, 200);
 }
 
 function update() {

@@ -6,7 +6,7 @@ Player.prototype.constructor = Player;
 
 function Player(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
-    inventory = [0 0 0 0 0 0 0 0 0 0];
+    inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
     game.add.existing(this);
 }

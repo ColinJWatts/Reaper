@@ -6,8 +6,6 @@ var examplePlant = function(game, x, y){
 	this.key = 'green';
 }
 
-
-
 examplePlant.prototype = Object.create(Plant.prototype);
 examplePlant.prototype.constructor = examplePlant;
 

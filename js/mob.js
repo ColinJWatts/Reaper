@@ -9,18 +9,48 @@ Mob.prototype.health = 0;
 Mob.prototype.damage = 0;
 Mob.prototype.distanceToPlayer = 0;
 Mob.prototype.angleToPlayer = 0;
+Mob.prototype.attackTimer = 0;
+Mob.prototype.key = 'cyan';
+Mob.prototype.tag = "";
 
 function Mob(game, x, y) {
-	Phaser.Sprite.call(this, game, x, y, 'cyan');
+	Phaser.Sprite.call(this, game, x, y, key);
+	this.anchor.set(0.5, 0.5);
 	game.add.existing(this);
 }
 
 
 
-Mob.prototype.tick = function(farm, time) {
+Mob.prototype.update = function(farm, time) {
 	var xDiff = player.x - this.position.x;
 	var yDiff = player.y - this.position.y;
-	this.distanceToPlayer = sqrt(xDiff*xDiff + yDiff*yDiff);
-	this.angleToPlayer = Math.atan(yDiff/xDiff);
-	this.move();
+	this.distanceToPlayer = Math.sqrt(xDiff*xDiff + yDiff*yDiff);
+	this.angleToPlayer = Math.atan2(yDiff, xDiff); //+Math.PI/2; (use for protective plants)
+	if(this.distanceToPlayer <= this.sightRange) {
+		this.moveTowardPlayer();
+	} else {
+		this.idleMove();
+	}
+	if(this.attackTimer <= 0 && this.distanceToPlayer <= this.attackRange) {
+		this.attack();
+		this.attackTimer = this.attackSpeed;
+	}
+	this.attackTimer -= game.time.elapsed/1000;
+
+	if (this.health <= 0) {
+		this.destroy();
+	}
+
+}
+
+Mob.prototype.moveTowardPlayer = function() {
+
+}
+
+Mob.prototype.idleMove = function() {
+
+}
+
+Mob.prototype.attack = function() {
+
 }

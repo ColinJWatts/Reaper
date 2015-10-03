@@ -12,6 +12,7 @@ Plant.prototype.farmX = 0;
 Plant.prototype.farmY = 0;
 Plant.prototype.key = 'magenta';
 Plant.prototype.tag = 'dirt';
+Plant.prototype.mob = '';
 
 //x and y are grid positions, not world coordinates
 function Plant(game, x, y){

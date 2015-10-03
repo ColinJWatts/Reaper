@@ -1,4 +1,4 @@
-function useHoe() {
-	console.log("HOE!!!!");
+function useShovel() {
+	console.log("SHOVEL!!!!");
 
 }

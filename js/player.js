@@ -5,10 +5,12 @@ Player.prototype.constructor = Player;
 //Player.prototype.force = {x:0.0, y:0.0}; 
 
 var cursors;
+var currentItem;
+var direction;
 
 function Player(game, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
-    inventory = [1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    inventory = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
 
     this.position.x = x;
@@ -51,23 +53,35 @@ Player.prototype.update = function() {
 
 function movePlayer() {
 	// controls player movement
-	if (cursors.left.isDown || cursors.a.isDown)
+	if (cursors.left.isDown || cursors.a.isDown) {
 		player.x -= 3;
-	if (cursors.right.isDown || cursors.d.isDown) 
+		direction = "L";
+	}
+	if (cursors.right.isDown || cursors.d.isDown) {
 		player.x += 3;
-	if (cursors.up.isDown || cursors.w.isDown)
+		direction = "R";
+	}
+	if (cursors.up.isDown || cursors.w.isDown){
 		player.y -= 3;
-	if (cursors.down.isDown || cursors.s.isDown)
+		direction = "U";
+	}
+	if (cursors.down.isDown || cursors.s.isDown) {
 		player.y += 3;
+		direction = "D";
+	}
 }
 
 function checkUsedItem(){
 
 	if(cursors.k0.justPressed(1))
-		useItem(inventory[0]);
+		currentItem = inventory[0];
 	if(cursors.k1.justPressed(1))
-		useItem(inventory[1]);
+		currentItem = inventory[1];
 
+	if(game.input.activePointer.isDown) {
+		console.log("using item");
+		useItem(currentItem);
+	}
 /*
 		var i = 0;i<10;i++){
 		var j = "k"+i;
@@ -77,9 +91,9 @@ function checkUsedItem(){
 }
 
 function useItem(item){
-		//Hoe
+		//shovel
 	if (item == 1){
-		useHoe();
+		useShovel();
 	}/*
 		//Scythe
 		case 2: 

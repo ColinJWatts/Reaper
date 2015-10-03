@@ -48,9 +48,9 @@ Field.prototype.add = function(plant, age, x, y){
 
 		if(this.grid[x][y].tag == tmp.tag){
 			this.grid[x][y].spreadBonus();
-			tmp.kill();
+			tmp.destroy();
 		} else if(this.grid[x][y].tag == 'dirt'){
-			this.grid[x][y].kill();
+			this.grid[x][y].destroy();
 			this.grid[x][y] = tmp;
 			//console.log(this.grid[x][y])
 		}

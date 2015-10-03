@@ -30,13 +30,13 @@ Player.prototype.update = function() {
 function movePlayer() {
 	// controls player movement
 	if (cursors.left.isDown)
-		player.x = -32;
+		player.x -= 3;
 	else if (cursors.right.isDown) 
-		player.x = 32;
+		player.x += 3;
 	else if (cursors.up.isDown)
-		player.y = 32;
+		player.y -= 3;
 	else if (cursors.down.isDown)
-		player.y = -32;
+		player.y += 3;
 }
 /*
 function checkUsedItem(){

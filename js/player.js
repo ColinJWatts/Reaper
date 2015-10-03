@@ -13,10 +13,16 @@ function Player(game, x, y) {
 
     this.cursors = game.input.keyboard.createCursorKeys();
 	cursors = {
+
     up: game.input.keyboard.addKey(Phaser.Keyboard.UP),
     down: game.input.keyboard.addKey(Phaser.Keyboard.DOWN),
     left: game.input.keyboard.addKey(Phaser.Keyboard.LEFT),
     right: game.input.keyboard.addKey(Phaser.Keyboard.RIGHT),
+
+    w: game.input.keyboard.addKey(Phaser.Keyboard.W),
+    s: game.input.keyboard.addKey(Phaser.Keyboard.S),
+    a: game.input.keyboard.addKey(Phaser.Keyboard.A),
+    d: game.input.keyboard.addKey(Phaser.Keyboard.D),
 	};
 
     game.add.existing(this);
@@ -29,13 +35,13 @@ Player.prototype.update = function() {
 
 function movePlayer() {
 	// controls player movement
-	if (cursors.left.isDown)
+	if (cursors.left.isDown || cursors.a.isDown)
 		player.x -= 3;
-	else if (cursors.right.isDown) 
+	if (cursors.right.isDown || cursors.d.isDown) 
 		player.x += 3;
-	else if (cursors.up.isDown)
+	if (cursors.up.isDown || cursors.w.isDown)
 		player.y -= 3;
-	else if (cursors.down.isDown)
+	if (cursors.down.isDown || cursors.s.isDown)
 		player.y += 3;
 }
 /*

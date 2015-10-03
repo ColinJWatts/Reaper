@@ -1,13 +1,5 @@
-var Plant = function(game, x, y){
-	this.game = game;
-	this.farmX = x;
-	this.farmY = y;
-	this.key = 'magenta';
-
-}
-
-Plant.prototype = Object.create(Phaser.Sprite.prototype);
 Plant.prototype.constructor = Plant;
+Plant.prototype = Object.create(Phaser.Sprite.prototype);
 Plant.prototype.spreadRate = 0;
 Plant.prototype.spawnRate = 0; //low spawn rate means more mobs
 Plant.prototype.spawnThresh = 0;
@@ -18,8 +10,19 @@ Plant.prototype.lastSpread = 0;
 Plant.prototype.playerDamage = 0;
 Plant.prototype.farmX = 0;
 Plant.prototype.farmY = 0;
+Plant.prototype.key = 'magenta';
+Plant.prototype.tag = 'dirt';
 
+//x and y are grid positions, not world coordinates
+function Plant(game, x, y){
+	Phaser.Sprite.call(this, game, x*64, y*64, this.key)
+	this.farmX = x;
+	this.farmY = y;
+	this.age = 0;
 
+	game.add.existing(this);
+	//console.log("added plant");
+}
 
 
 Plant.prototype.tick = function(farm, time){
@@ -29,9 +32,10 @@ Plant.prototype.tick = function(farm, time){
 		this.spawn();
 		this.lastSpawn += this.spawnRate;
 	}
-	if(this.age > this.spreadThresh && this.lastSpread + this.spreadRate < this.age - this.spreadThresh){
-		this.spread(this.age-this.lastSpread, farm);
+	if(this.age > this.spreadThresh && this.lastSpread < this.age - this.spreadThresh){
 		this.lastSpread += this.spreadRate;
+		this.spread(this.age-this.lastSpread, farm);
+
 	}
 }
 
@@ -44,6 +48,7 @@ Plant.prototype.render = function(){
 
 //grow plants for time "time"
 Plant.prototype.grow = function(time){
+	//console.log(time);
 	this.age += time;
 }
 

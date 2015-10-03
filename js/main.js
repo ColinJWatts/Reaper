@@ -17,9 +17,9 @@ function preload() {
 
 function create() {
 
-	var field = new Field(game, 10);
+	var field = new Field(game, 10, 1, 1);
 
-	field.add(examplePlant, 0, 1, 1);
+	field.add(examplePlant, 0, 4, 4);
 
 	player = new Player(game, 200, 200);
 }

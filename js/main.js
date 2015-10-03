@@ -19,7 +19,7 @@ function create() {
 
 	var field = new Field(game, 10);
 
-	field.add(examplePlant, 5, 5);
+	field.add(examplePlant, 0, 1, 1);
 
 	player = new Player(game, 20, 20);
 }

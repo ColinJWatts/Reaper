@@ -70,6 +70,6 @@ Field.prototype.count = function(plant){
 				n++;
 		}
 	}
-	console.log(n);
+	//console.log(n);
 	return n;
 }

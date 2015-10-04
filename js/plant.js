@@ -53,8 +53,7 @@ Plant.prototype.grow = function(time){
 }
 
 //spawn mobs
-Plant.prototype.spawn = function(){
-	//create mob
+Plant.prototype.spawn = function(field){
 }
 
 //spread more plants

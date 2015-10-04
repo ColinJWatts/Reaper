@@ -38,7 +38,7 @@ examplePlant.prototype.spreadBonus = function(){
 }
 
 examplePlant.prototype.spawn = function(field){
-	if(mobs.countAlive < field.count(this.constructor)){
+	if(mobs.length < field.count(this)/4){
 		var enemy = new this.mob(this.game, this.x, this.y);
 		mobs.add(enemy);
 	}

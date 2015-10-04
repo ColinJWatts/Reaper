@@ -16,6 +16,7 @@ Mob.prototype.tag = "";
 function Mob(game, x, y) {
 	Phaser.Sprite.call(this, game, x, y, key);
 	this.anchor.set(0.5, 0.5);
+	game.physics.arcade.enable(this);
 	game.add.existing(this);
 }
 
@@ -40,6 +41,7 @@ Mob.prototype.update = function(farm, time) {
 	if (this.health <= 0) {
 		this.destroy();
 	}
+
 
 }
 

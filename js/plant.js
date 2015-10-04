@@ -12,26 +12,25 @@ Plant.prototype.farmX = 0;
 Plant.prototype.farmY = 0;
 Plant.prototype.key = 'magenta';
 Plant.prototype.tag = 'dirt';
-Plant.prototype.mob = '';
+Plant.prototype.mob = Mob;
 
 //x and y are grid positions, not world coordinates
-function Plant(game, x, y){
-	Phaser.Sprite.call(this, game, x*64, y*64, this.key)
+function Plant(game, field, x, y){
+	Phaser.Sprite.call(this, game, x*64+field.x, y*64+field.y, this.key)
 	this.farmX = x;
 	this.farmY = y;
 	this.age = 0;
 
-	game.add.existing(this);
+	plants.add(this);
 	//console.log("added plant");
 }
-
 
 Plant.prototype.tick = function(farm, time){
 	this.render();
 	this.grow(time);
 	if(this.age > this.spawnThresh && this.lastSpawn + this.spawnRate < this.age - this.spawnThresh){
-		this.spawn();
 		this.lastSpawn += this.spawnRate;
+		this.spawn(farm);
 	}
 	if(this.age > this.spreadThresh && this.lastSpread < this.age - this.spreadThresh){
 		this.lastSpread += this.spreadRate;

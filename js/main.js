@@ -2,6 +2,9 @@
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });
 
+var mobs;
+var plants;
+var field;
 function preload() {
 
 	game.load.image('black', 'assets/black.png');
@@ -16,16 +19,16 @@ function preload() {
 
 
 function create() {
+	plants = game.add.group();
+	mobs = game.add.group();
 
-	var field = new Field(game, 10, 1, 1);
+	field = new Field(game, 11, 9, 1, 1);
 
-	//field.add(examplePlant, 0, 4, 4);
+	field.add(examplePlant, 0, 2, 4);
 
-	var enemy = new exampleMob(game, 20, 20);
-
-	player = new Player(game, field, 200, 200);
+	player = new Player(game, 200, 200);
 }
 
 function update() {
-
+	game.physics.arcade.collide(mobs, mobs);
 }

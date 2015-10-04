@@ -8,10 +8,12 @@ var cursors;
 var currentItem;
 var direction;
 var currField;
+var inventory;
+var inv_slot;
 
 function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
-    inventory = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
+    inventory = [0, 1, 2, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
 
     currField = field;
@@ -76,14 +78,23 @@ function movePlayer() {
 
 function checkUsedItem(){
 
-	if(cursors.k0.justPressed(1))
+	if(cursors.k0.justPressed(1)) {
 		currentItem = inventory[0];
-	if(cursors.k1.justPressed(1))
+		inv_slot = 0;
+	}
+	if(cursors.k1.justPressed(1)) {
 		currentItem = inventory[1];
+		inv_slot = 1;
+	}
+	if(cursors.k2.justPressed(1)) {
+		currentItem = inventory[2];
+		inv_slot = 2;
+	}
+
 
 	if(game.input.activePointer.isDown) {
 		console.log("using item");
-		useItem(currentItem);
+		useItem(currentItem, inv_slot);
 	}
 /*
 		var i = 0;i<10;i++){
@@ -93,11 +104,16 @@ function checkUsedItem(){
 	}*/
 }
 
-function useItem(item){
+function useItem(item, inv_slot){
 		//shovel
 	if (item == 1){
 		useShovel(currField);
-	}/*
+	}
+	if (item == 2) {
+		plantExamplePlant(currField, inventory, inv_slot);
+	}
+
+	/*
 		//Scythe
 		case 2: 
 			useScythe();

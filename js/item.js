@@ -47,5 +47,17 @@ function plantExamplePlant(field, inventory, inv_slot) {
 	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
 		field.add(examplePlant, 0, x, y);
 		inventory[inv_slot]=0;
+		player.currentItem = 0;
+	}
+}
+
+function Sythe(field, inventory, inv_slot) {
+	console.log("SWOOSH\n");
+	var mouseX = game.input.mousePointer.x;
+	var mouseY = game.input.mousePointer.y;
+	var playerX = player.position.x;
+	var playerY = player.position.y;
+	if( ((mouseX > playerX && playerX+128>mouseX) || (mouseX < playerX && playerX-128<mouseX)) && ((mouseY > playerY && playerY+128>mouseY) || (mouseY<playerY && playerY-128<mouseY))) {
+
 	}
 }

@@ -23,6 +23,7 @@ function preload() {
 function create() {
 	plants = game.add.group();
 	mobs = game.add.group();
+	projectiles = game.add.group();
 
 	garden = new Field(game, 11, 9, 1, 1);
 

@@ -42,4 +42,7 @@ function update() {
 	}
 
 	game.physics.arcade.collide(mobs, mobs);
+	game.physics.arcade.overlap(projectiles, mobs, hitMob);
+	game.physics.arcade.overlap(projectiles, projectiles, hitProj);
+	game.physics.arcade.overlap(projectiles, player, hitPlayer);
 }

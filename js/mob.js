@@ -10,6 +10,7 @@ Mob.prototype.damage = 0;
 Mob.prototype.distanceToPlayer = 0;
 Mob.prototype.angleToPlayer = 0;
 Mob.prototype.attackTimer = 0;
+Mob.prototype.projectile = Proj;
 Mob.prototype.key = 'cyan';
 Mob.prototype.tag = "";
 

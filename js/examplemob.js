@@ -8,6 +8,7 @@ exampleMob.prototype.attackRange = 100;
 exampleMob.prototype.sightRange = 200;
 exampleMob.prototype.health = 1;
 exampleMob.prototype.attackSpeed = .5;
+exampleMob.prototype.projectile = exampleProjectile;
 exampleMob.prototype.tag = 'exampleMob';
 
 
@@ -37,5 +38,5 @@ exampleMob.prototype.idleMove = function() {
 }
 
 exampleMob.prototype.attack = function() {
-	console.log("BAM");
+	projectiles.add(new this.projectile(this.game, this.x, this.y, this.angleToPlayer));
 }

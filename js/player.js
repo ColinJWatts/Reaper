@@ -7,11 +7,14 @@ Player.prototype.constructor = Player;
 var cursors;
 var currentItem;
 var direction;
+var currField;
 
-function Player(game, x, y) {
+function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
     inventory = [0, 1, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
+
+    currField = field;
 
     this.position.x = x;
     this.position.y = y;
@@ -93,7 +96,7 @@ function checkUsedItem(){
 function useItem(item){
 		//shovel
 	if (item == 1){
-		useShovel();
+		useShovel(currField);
 	}/*
 		//Scythe
 		case 2: 

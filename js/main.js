@@ -19,11 +19,11 @@ function create() {
 
 	var field = new Field(game, 10, 1, 1);
 
-	//field.add(examplePlant, 0, 4, 4);
+	field.add(examplePlant, 0, 4, 4);
 
 	var enemy = new exampleMob(game, 20, 20);
 
-	player = new Player(game, 200, 200);
+	player = new Player(game, field, 200, 200);
 }
 
 function update() {

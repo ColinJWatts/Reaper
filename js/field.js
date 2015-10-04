@@ -27,14 +27,13 @@ function Field(game, sX, sY, x, y){
 
 
 //updates each plant tile in the field
-Field.prototype.update = function(){
+Field.prototype.tick = function(time){
 	for(var i = 0; i < this.fieldSizeX; i++){
 		for(var j = 0; j < this.fieldSizeY; j++){
-			this.grid[i][j].tick(this, game.time.elapsed/1000);
+			this.grid[i][j].tick(this, time);
 		}
 	}
 }
-
 
 //x and y are grid positions, not world coordinates
 Field.prototype.add = function(plant, age, x, y){

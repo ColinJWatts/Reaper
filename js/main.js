@@ -5,6 +5,8 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
 var mobs;
 var plants;
 var field;
+var gardenTime;
+
 function preload() {
 
 	game.load.image('black', 'assets/black.png');
@@ -22,13 +24,21 @@ function create() {
 	plants = game.add.group();
 	mobs = game.add.group();
 
-	field = new Field(game, 11, 9, 1, 1);
+	garden = new Field(game, 11, 9, 1, 1);
 
-	field.add(examplePlant, 0, 2, 4);
+	garden.add(examplePlant, 0, 2, 4);
 
-	player = new Player(game, field, 200, 200);
+	player = new Player(game, garden, 200, 200);
+	gardenTime = 0;
 }
 
 function update() {
+	
+	gardenTime += game.time.elapsed/1000;
+	if(currField == garden){
+		garden.tick(gardenTime);
+		gardenTime = 0;
+	}
+
 	game.physics.arcade.collide(mobs, mobs);
 }

@@ -53,6 +53,10 @@ Mob.prototype.idleMove = function() {
 
 }
 
+Mob.prototype.destroy = function(){
+	this.destroy();
+}
+
 Mob.prototype.attack = function() {
 
 }

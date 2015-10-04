@@ -32,7 +32,8 @@ exampleMob.prototype.moveTowardPlayer = function() {
 }
 
 exampleMob.prototype.idleMove = function() {
-
+	this.body.velocity.x = 0;
+	this.body.velocity.y = 0;	
 }
 
 exampleMob.prototype.attack = function() {

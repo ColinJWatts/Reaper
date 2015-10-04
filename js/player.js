@@ -54,6 +54,7 @@ function Player(game, field, x, y) {
 Player.prototype.update = function() {
 	movePlayer();
 	checkUsedItem();
+	this.checkField();
 }
 
 function movePlayer() {
@@ -126,4 +127,18 @@ function useItem(item, inv_slot){
 			useGun(2);
 			break;
 			*/
+}
+
+Player.prototype.checkField = function(){
+	if(currField == garden && this.x <= 0){
+		console.log("entered town");
+		currField = 'town';
+		this.x = game.world.width-1;
+		mobs.removeAll(true);
+	}
+	else if(currField == 'town' && this.x >= game.world.width){
+		console.log("entered garden");
+		currField = garden;
+		this.x = 1;
+	}
 }

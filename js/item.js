@@ -58,6 +58,6 @@ function Sythe(field, inventory, inv_slot) {
 	var playerX = player.position.x;
 	var playerY = player.position.y;
 	if( ((mouseX > playerX && playerX+128>mouseX) || (mouseX < playerX && playerX-128<mouseX)) && ((mouseY > playerY && playerY+128>mouseY) || (mouseY<playerY && playerY-128<mouseY))) {
-
+		
 	}
 }

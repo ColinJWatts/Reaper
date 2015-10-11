@@ -25,5 +25,5 @@ function exampleProjectile(game, x, y, angle){
 }
 
 exampleProjectile.prototype.move = function() {
-
+	
 }

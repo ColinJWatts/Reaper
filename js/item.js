@@ -5,15 +5,20 @@ Item.prototype.inInv = false;
 Item.prototype.key = 'item';
 Item.prototype.itemNum = 0;
 
+
 function Item(game,x,y,key,inInv,inv_slot,itemNum){
 	if(inInv)
-		player.inventory[inv_slot] = itemNum;
-	else
+		inventory[inv_slot] = itemNum;
+	else{
 		Phaser.Sprite.call(this, game, x, y, key);
+		game.add.existing(this);
+	}
 }
 
-function useItem(itemNum, inventory, inv_slot){
+function useItem(itemNum, inv_slot){
 		//shovel
+	if (itemNum == 0)
+		console.log('ain\'t got no item, fool');
 	if (itemNum == 1){
 		useShovel(currField);
 	}
@@ -61,7 +66,7 @@ function useShovel(field) {
 	}
 }
 
-function plantExamplePlant(field, inventory, inv_slot) {
+function plantExamplePlant(field, inv_slot) {
 	//Shovel.prototype = Object.create(Phaser.Sprite.prototype);
 	//Shovel.prototype.constructor = Shovel;
 
@@ -85,8 +90,7 @@ function plantExamplePlant(field, inventory, inv_slot) {
 	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
 		field.add(examplePlant, 0, x, y);
 		inventory[inv_slot]=0;
-		player.currentItem = 0;
-		console.log("inventory:" + inventory[0] + inventory[1] + inventory[2]);
+		currentItem = 0;
 	}
 }
 

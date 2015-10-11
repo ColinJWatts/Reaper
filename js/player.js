@@ -19,7 +19,7 @@ function Player(game, field, x, y) {
     this.anchor.setTo(0.5, 0.5);
     game.physics.arcade.enable(this);
 
-    currField = field;
+    currField = garden;
 
     this.position.x = x;
     this.position.y = y;
@@ -90,8 +90,6 @@ function movePlayer() {
 	if (testV == 0) {
 		player.body.velocity.y = 0;
 	}
-
-	//console.log(player.body.velocity);
 }
 
 function checkUsedItem(){
@@ -114,22 +112,17 @@ function checkUsedItem(){
 		console.log("using item");
 		useItem(currentItem, inv_slot);
 	}
-/*
-		var i = 0;i<10;i++){
-		var j = "k"+i;
-		if (cursors.j.isDown)
-			useItem(inventory(i));
-	}*/
+
 }
 
 Player.prototype.checkField = function(){
 	if(currField == garden && this.x <= 0){
 		console.log("entered town");
-		currField = 'town';
+		currField = town;
 		this.x = game.world.width-1;
 		mobs.removeAll(true);
 	}
-	else if(currField == 'town' && this.x >= game.world.width){
+	else if(currField == town && this.x >= game.world.width){
 		console.log("entered garden");
 		currField = garden;
 		this.x = 1;

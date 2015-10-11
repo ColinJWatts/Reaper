@@ -21,15 +21,10 @@ function exampleMob(game, x, y){
 }
 
 exampleMob.prototype.moveTowardPlayer = function() {
-	if(this.distanceToPlayer > this.attackRange){
 		this.rotation = this.angleToPlayer;
-		this.body.velocity.x = this.moveSpeed*Math.cos(this.angleToPlayer);
-		this.body.velocity.y = this.moveSpeed*Math.sin(this.angleToPlayer);
-	} else if (this.distanceToPlayer < this.attackRange){
-		this.rotation = this.angleToPlayer;
-		this.body.velocity.x = -this.moveSpeed*Math.cos(this.angleToPlayer);
-		this.body.velocity.y = -this.moveSpeed*Math.sin(this.angleToPlayer);
-	}
+		this.body.velocity.x = this.moveSpeed*Math.cos(this.angleToPlayer)*Math.tanh((this.distanceToPlayer-this.attackRange)/10);
+		this.body.velocity.y = this.moveSpeed*Math.sin(this.angleToPlayer)*Math.tanh((this.distanceToPlayer-this.attackRange)/10);
+	
 }
 
 exampleMob.prototype.idleMove = function() {

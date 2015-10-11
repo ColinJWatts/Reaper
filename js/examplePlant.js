@@ -6,16 +6,16 @@ examplePlant.prototype.constructor = examplePlant;
 examplePlant.prototype.spreadThresh = 3;
 examplePlant.prototype.spreadRate = 4;
 examplePlant.prototype.spawnThresh = 1;
-examplePlant.prototype.spawnRate = 20;
+examplePlant.prototype.spawnRate = 5;
 examplePlant.prototype.tag = 'example';
-examplePlant.prototype.mob = exampleMob;
+examplePlant.prototype.spawnMob = exampleMob;
 
 //x and y are grid positions, not world coordinates
 function examplePlant(game, field, x, y){
 	Phaser.Sprite.call(this, game, x*64+field.x, y*64+field.y, this.key)
 	this.farmX = x;
 	this.farmY = y;
-
+	this.anchor.set(0.5, 0.5);
 	plants.add(this);
 	//console.log("added examplePlant");
 }
@@ -38,8 +38,10 @@ examplePlant.prototype.spreadBonus = function(){
 }
 
 examplePlant.prototype.spawn = function(field){
-	if(mobs.length < field.count(this)/4){
-		var enemy = new this.mob(this.game, this.x, this.y);
+	//console.log(countMob(this.spawnMob.prototype.tag));
+	if(this.mob == null && countMob(this.spawnMob.prototype.tag) < field.count(this.tag)/4){
+		var enemy = new this.spawnMob(this.game, this.x, this.y);
+		this.mob = enemy;
 		mobs.add(enemy);
 	}
 }

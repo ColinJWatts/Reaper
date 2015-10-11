@@ -7,7 +7,7 @@ Field.prototype.fieldSizeX = 0;
 Field.prototype.fieldSizeY = 0;
 
 function Field(game, sX, sY, x, y){
-	Phaser.Sprite.call(this, game, x, y, 'yellow')
+	Phaser.Sprite.call(this, game, x, y, '')
 	this.fieldSizeX = sX;
 	this.fieldSizeY = sY;
 	this.grid = new Array(this.fieldSizeX);
@@ -61,11 +61,12 @@ Field.prototype.add = function(plant, age, x, y){
 	}
 }
 
-Field.prototype.count = function(plant){
+Field.prototype.count = function(tag){
 	var n = 0;
+	//console.log(tag);
 	for(var i = 0; i < this.fieldSizeX; i++){
 		for(var j = 0; j < this.fieldSizeY; j++){
-			if(this.grid[i][j].tag == plant.tag)
+			if(this.grid[i][j].tag == tag)
 				n++;
 		}
 	}

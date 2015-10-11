@@ -1,5 +1,5 @@
-Plant.prototype.constructor = Plant;
 Plant.prototype = Object.create(Phaser.Sprite.prototype);
+Plant.prototype.constructor = Plant;
 Plant.prototype.spreadRate = 0;
 Plant.prototype.spawnRate = 0; //low spawn rate means more mobs
 Plant.prototype.spawnThresh = 0;
@@ -10,9 +10,10 @@ Plant.prototype.lastSpread = 0;
 Plant.prototype.playerDamage = 0;
 Plant.prototype.farmX = 0;
 Plant.prototype.farmY = 0;
-Plant.prototype.key = 'magenta';
+Plant.prototype.key = 'dirt';
 Plant.prototype.tag = 'dirt';
-Plant.prototype.mob = Mob;
+Plant.prototype.spawnMob = Mob;
+Plant.prototype.mob = null;
 
 //x and y are grid positions, not world coordinates
 function Plant(game, field, x, y){
@@ -20,7 +21,7 @@ function Plant(game, field, x, y){
 	this.farmX = x;
 	this.farmY = y;
 	this.age = 0;
-
+	this.anchor.set(0.5, 0.5);
 	plants.add(this);
 	//console.log("added plant");
 }

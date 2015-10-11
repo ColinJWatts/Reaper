@@ -17,6 +17,8 @@ function preload() {
 	game.load.image('red', 'assets/red.png');
 	game.load.image('white', 'assets/white.png');
 	game.load.image('yellow', 'assets/yellow.png');
+	game.load.image('dirt', 'assets/dirt.png');
+	//game.load.sound('dig', 'assets/sound/dig.mp3');
 }
 
 
@@ -25,7 +27,7 @@ function create() {
 	mobs = game.add.group();
 	projectiles = game.add.group();
 
-	garden = new Field(game, 11, 9, 1, 1);
+	garden = new Field(game, 11, 9, 32, 32);
 
 	garden.add(examplePlant, 0, 2, 4);
 

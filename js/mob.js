@@ -61,3 +61,12 @@ Mob.prototype.destroy = function(){
 Mob.prototype.attack = function() {
 
 }
+
+function countMob(tag){
+	var count = 0;
+	for(var i = 0; i < mobs.length; i++){
+		if(mobs.getChildAt(i).tag == tag)
+			count++;
+	}
+	return count;
+}

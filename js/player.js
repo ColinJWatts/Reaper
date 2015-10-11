@@ -15,6 +15,7 @@ function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
     inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
+    game.physics.arcade.enable(this);
 
     currField = field;
 
@@ -59,22 +60,36 @@ Player.prototype.update = function() {
 
 function movePlayer() {
 	// controls player movement
+	testV = 0;
+	testH = 0;	
 	if (cursors.left.isDown || cursors.a.isDown) {
-		player.x -= 3;
+		player.body.velocity.x = -75;
 		direction = "L";
+		testH = 1;
 	}
 	if (cursors.right.isDown || cursors.d.isDown) {
-		player.x += 3;
+		player.body.velocity.x  = 75;
 		direction = "R";
+		testH = 1;
 	}
 	if (cursors.up.isDown || cursors.w.isDown){
-		player.y -= 3;
+		player.body.velocity.y  = -75;
 		direction = "U";
+		testV = 1;
 	}
 	if (cursors.down.isDown || cursors.s.isDown) {
-		player.y += 3;
+		player.body.velocity.y  = 75;
 		direction = "D";
+		testV = 1;
 	}
+	if (testH == 0) {
+		player.body.velocity.x = 0;
+	}
+	if (testV == 0) {
+		player.body.velocity.y = 0;
+	}
+
+	console.log(player.body.velocity);
 }
 
 function checkUsedItem(){

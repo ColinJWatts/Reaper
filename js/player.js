@@ -11,13 +11,15 @@ var currField;
 var inventory;
 var inv_slot;
 
+Player.prototype.moveSpeed = 150;
+
 function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
     inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
     game.physics.arcade.enable(this);
 
-    currField = garden;
+    currField = field;
 
     this.position.x = x;
     this.position.y = y;
@@ -63,22 +65,22 @@ function movePlayer() {
 	testV = 0;
 	testH = 0;	
 	if (cursors.left.isDown || cursors.a.isDown) {
-		player.body.velocity.x = -75;
+		player.body.velocity.x = -player.moveSpeed;
 		direction = "L";
 		testH = 1;
 	}
 	if (cursors.right.isDown || cursors.d.isDown) {
-		player.body.velocity.x  = 75;
+		player.body.velocity.x  = player.moveSpeed;
 		direction = "R";
 		testH = 1;
 	}
 	if (cursors.up.isDown || cursors.w.isDown){
-		player.body.velocity.y  = -75;
+		player.body.velocity.y  = -player.moveSpeed;
 		direction = "U";
 		testV = 1;
 	}
 	if (cursors.down.isDown || cursors.s.isDown) {
-		player.body.velocity.y  = 75;
+		player.body.velocity.y  = player.moveSpeed;
 		direction = "D";
 		testV = 1;
 	}
@@ -88,6 +90,8 @@ function movePlayer() {
 	if (testV == 0) {
 		player.body.velocity.y = 0;
 	}
+
+	//console.log(player.body.velocity);
 }
 
 function checkUsedItem(){
@@ -110,17 +114,22 @@ function checkUsedItem(){
 		console.log("using item");
 		useItem(currentItem, inv_slot);
 	}
-
+/*
+		var i = 0;i<10;i++){
+		var j = "k"+i;
+		if (cursors.j.isDown)
+			useItem(inventory(i));
+	}*/
 }
 
 Player.prototype.checkField = function(){
 	if(currField == garden && this.x <= 0){
 		console.log("entered town");
-		currField = town;
+		currField = 'town';
 		this.x = game.world.width-1;
 		mobs.removeAll(true);
 	}
-	else if(currField == town && this.x >= game.world.width){
+	else if(currField == 'town' && this.x >= game.world.width){
 		console.log("entered garden");
 		currField = garden;
 		this.x = 1;

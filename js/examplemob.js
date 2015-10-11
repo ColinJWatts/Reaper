@@ -7,7 +7,7 @@ exampleMob.prototype.moveSpeed = 300;
 exampleMob.prototype.attackRange = 100;
 exampleMob.prototype.sightRange = 200;
 exampleMob.prototype.health = 1;
-exampleMob.prototype.attackSpeed = .5;
+exampleMob.prototype.attackSpeed = 5;
 exampleMob.prototype.projectile = exampleProjectile;
 exampleMob.prototype.tag = 'exampleMob';
 
@@ -21,15 +21,10 @@ function exampleMob(game, x, y){
 }
 
 exampleMob.prototype.moveTowardPlayer = function() {
-	if(this.distanceToPlayer > this.attackRange){
 		this.rotation = this.angleToPlayer;
-		this.body.velocity.x = this.moveSpeed*Math.cos(this.angleToPlayer);
-		this.body.velocity.y = this.moveSpeed*Math.sin(this.angleToPlayer);
-	} else if (this.distanceToPlayer < this.attackRange){
-		this.rotation = this.angleToPlayer;
-		this.body.velocity.x = -this.moveSpeed*Math.cos(this.angleToPlayer);
-		this.body.velocity.y = -this.moveSpeed*Math.sin(this.angleToPlayer);
-	}
+		this.body.velocity.x = this.moveSpeed*Math.cos(this.angleToPlayer)*Math.tanh((this.distanceToPlayer-this.attackRange)/10);
+		this.body.velocity.y = this.moveSpeed*Math.sin(this.angleToPlayer)*Math.tanh((this.distanceToPlayer-this.attackRange)/10);
+	
 }
 
 exampleMob.prototype.idleMove = function() {

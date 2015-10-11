@@ -13,7 +13,7 @@ var inv_slot;
 
 function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
-    inventory = [0, 1, 2, 0, 0, 0, 0, 0, 0, 0];
+    inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     this.anchor.setTo(0.5, 0.5);
 
     currField = field;
@@ -103,30 +103,6 @@ function checkUsedItem(){
 		if (cursors.j.isDown)
 			useItem(inventory(i));
 	}*/
-}
-
-function useItem(item, inv_slot){
-		//shovel
-	if (item == 1){
-		useShovel(currField);
-	}
-	if (item == 2) {
-		plantExamplePlant(currField, inventory, inv_slot);
-	}
-
-	/*
-		//Scythe
-		case 2: 
-			useScythe();
-			break;
-		//Gun: useGun(1) = basic gun, useGun(2) = more advanced, etc.
-		case 3: 
-			useGun(1);
-			break;
-		case 4: 
-			useGun(2);
-			break;
-			*/
 }
 
 Player.prototype.checkField = function(){

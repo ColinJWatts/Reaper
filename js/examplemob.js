@@ -7,7 +7,7 @@ exampleMob.prototype.moveSpeed = 300;
 exampleMob.prototype.attackRange = 100;
 exampleMob.prototype.sightRange = 200;
 exampleMob.prototype.health = 1;
-exampleMob.prototype.attackSpeed = .5;
+exampleMob.prototype.attackSpeed = 5;
 exampleMob.prototype.projectile = exampleProjectile;
 exampleMob.prototype.tag = 'exampleMob';
 

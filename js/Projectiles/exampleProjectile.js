@@ -2,7 +2,7 @@ exampleProjectile.prototype = Object.create(Proj.prototype);
 
 exampleProjectile.prototype.constructor = exampleProjectile;
 
-exampleProjectile.prototype.moveSpeed = 5;
+exampleProjectile.prototype.moveSpeed = 20;
 exampleProjectile.prototype.lifetime = 2;
 exampleProjectile.prototype.damage = 4;
 

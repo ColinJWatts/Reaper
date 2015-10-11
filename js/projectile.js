@@ -64,10 +64,9 @@ function hitProj(projectileA, projectileB){
 }
 
 function hitPlayer(projectile, player){
-	console.log("hitPlayer :D");
-	/*if(projectile.isPlayers == 0){
-		//player.health -= projectile.damage;
+	if(projectile.isPlayers == 0){
+		player.health -= projectile.damage;
 		if(projectile.isPiercing == 0)
 			projectile.destroy();
-	}*/
+	}
 }

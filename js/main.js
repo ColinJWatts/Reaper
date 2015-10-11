@@ -28,12 +28,13 @@ function create() {
 	projectiles = game.add.group();
 
 	garden = new Field(game, 11, 9, 32, 32);
+	town = new Field(game, 1, 1, 32, 32);
 
 	garden.add(examplePlant, 0, 2, 4);
 
 	player = new Player(game, garden, 200, 200);
 	gardenTime = 0;
-	sword = new Item(game, 300, 300, 'white', false, 1, 1);
+	sword = new Item(game, 300, 300, 'white', true, 1, 1);
 
 }
 

@@ -33,6 +33,8 @@ function create() {
 
 	player = new Player(game, garden, 200, 200);
 	gardenTime = 0;
+	sword = new Item(game, 300, 300, 'white', false, 1, 1);
+
 }
 
 function update() {

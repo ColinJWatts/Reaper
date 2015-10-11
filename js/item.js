@@ -1,3 +1,41 @@
+Item.prototype = Object.create(Phaser.Sprite.prototype);
+
+Item.prototype.constructor = Item;
+Item.prototype.inInv = false;
+Item.prototype.key = 'item';
+Item.prototype.itemNum = 0;
+
+function Item(game,x,y,key,inInv,inv_slot,itemNum){
+	if(inInv)
+		player.inventory[inv_slot] = itemNum;
+	else
+		Phaser.Sprite.call(this, game, x, y, key);
+}
+
+function useItem(itemNum, inventory, inv_slot){
+		//shovel
+	if (itemNum == 1){
+		useShovel(currField);
+	}
+	if (itemNum == 2) {
+		plantExamplePlant(currField, inventory, inv_slot);
+	}
+
+	/*
+		//Scythe
+		case 2: 
+			useScythe();
+			break;
+		//Gun: useGun(1) = basic gun, useGun(2) = more advanced, etc.
+		case 3: 
+			useGun(1);
+			break;
+		case 4: 
+			useGun(2);
+			break;
+			*/
+}
+
 function useShovel(field) {
 	//Shovel.prototype = Object.create(Phaser.Sprite.prototype);
 	//Shovel.prototype.constructor = Shovel;
@@ -48,6 +86,7 @@ function plantExamplePlant(field, inventory, inv_slot) {
 		field.add(examplePlant, 0, x, y);
 		inventory[inv_slot]=0;
 		player.currentItem = 0;
+		console.log("inventory:" + inventory[0] + inventory[1] + inventory[2]);
 	}
 }
 

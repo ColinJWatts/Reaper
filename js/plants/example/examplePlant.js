@@ -22,7 +22,7 @@ function examplePlant(game, field, x, y){
 
 
 examplePlant.prototype.spread = function(age, field){
-	var n = Math.floor(Math.random()*2);
+	var n = Math.floor(Math.random()*4);
 	if(n == 0)
 		field.add(examplePlant, age, this.farmX+1, this.farmY)
 	else if (n == 1)

@@ -15,7 +15,10 @@ Player.prototype.moveSpeed = 150;
 
 function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'red');
-    inventory = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    //1st row of inventory is the identifier (e.g a 1 is a shovel, etc.)
+    //2nd row is how many of the item the player has
+    //this does mean you could get 40 shovels by the end if they drop, but this shouldn't ever happen
+    inventory = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     this.anchor.setTo(0.5, 0.5);
     game.physics.arcade.enable(this);
 
@@ -35,10 +38,7 @@ function Player(game, field, x, y) {
     s: game.input.keyboard.addKey(Phaser.Keyboard.S),
     a: game.input.keyboard.addKey(Phaser.Keyboard.A),
     d: game.input.keyboard.addKey(Phaser.Keyboard.D),
-	//};
 
-	//this.numKeys = game.input.keyboard.createCursorKeys();
-	//numKeys = {
     k0: game.input.keyboard.addKey(Phaser.Keyboard.ZERO),
     k1: game.input.keyboard.addKey(Phaser.Keyboard.ONE),
     k2: game.input.keyboard.addKey(Phaser.Keyboard.TWO),
@@ -57,7 +57,7 @@ function Player(game, field, x, y) {
 Player.prototype.update = function() {
 	movePlayer();
 	checkUsedItem();
-	this.checkField();
+	checkField();
 }
 
 function movePlayer() {
@@ -93,17 +93,17 @@ function movePlayer() {
 }
 
 function checkUsedItem(){
-
+	//checks if the player is using an item at any given moment
 	if(cursors.k0.justPressed(1)) {
-		currentItem = inventory[0];
+		currentItem = inventory[0][0];
 		inv_slot = 0;
 	}
 	if(cursors.k1.justPressed(1)) {
-		currentItem = inventory[1];
+		currentItem = inventory[0][1];
 		inv_slot = 1;
 	}
 	if(cursors.k2.justPressed(1)) {
-		currentItem = inventory[2];
+		currentItem = inventory[0][2];
 		inv_slot = 2;
 	}
 
@@ -112,10 +112,9 @@ function checkUsedItem(){
 		console.log("using item");
 		useItem(currentItem, inv_slot);
 	}
-
 }
 
-Player.prototype.checkField = function(){
+function checkField(){
 	if(currField == garden && this.x <= 0){
 		console.log("entered town");
 		currField = town;

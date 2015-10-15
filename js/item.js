@@ -8,17 +8,49 @@ Item.prototype.itemNum = 0;
 
 function Item(game,x,y,key,inInv,inv_slot,itemNum){
 	if(inInv)
-		inventory[inv_slot] = itemNum;
+		inventory[0][inv_slot] = itemNum;
 	else{
 		Phaser.Sprite.call(this, game, x, y, key);
 		game.add.existing(this);
 	}
+	items.add(this);
+}
+
+function collectItem (item, player) {
+	var inInv = false;
+	var firstEmptySlot;
+	//0 is a special case since it's actually the farthest key
+	//without taking these conditionals outside the loop the first empty slot
+	//will usually default to 0, not 1 or 2 or one of the early keys
+	if(inventory[0][0]==item.itemNum){
+			inventory[1][0] += 1;
+			inInv = true;
+		}
+	if(inventory[0][0] == 0){
+		firstEmptySlot = i;
+	}
+	//loop through other keys
+	for(var i = 9;i>0;i--){
+		if(inventory[0][i]==item.itemNum){
+			inventory[1][i] += 1;
+			inInv = true;
+		}
+		if(inventory[0][i] == 0){
+			firstEmptySlot = i;
+		}
+	}
+	//if the item isn't in the inventory already
+	if(!inInv){
+		inventory[0][firstEmptySlot] = item.itemNum;
+		inventory[1][firstEmptySlot] = 1;
+	}
+	item.destroy();
 }
 
 function useItem(itemNum, inv_slot){
 		//shovel
 	if (itemNum == 0)
-		console.log('ain\'t got no item, fool');
+		//console.log('ain\'t got no item, fool');
 	if (itemNum == 1){
 		useShovel(currField);
 	}
@@ -42,19 +74,13 @@ function useItem(itemNum, inv_slot){
 }
 
 function useShovel(field) {
-	//Shovel.prototype = Object.create(Phaser.Sprite.prototype);
-	//Shovel.prototype.constructor = Shovel;
 
 	console.log("Using shovel...");
 	var mouseX = game.input.mousePointer.x;
 	var mouseY = game.input.mousePointer.y;
 	var playerX = player.position.x;
 	var playerY = player.position.y;
-	//console.log(mouseX);
-	//console.log(mouseY);
-	//console.log(playerX);
-	//console.log(playerY);
-	console.log("\n");
+
 
 	fieldX = field.x;
 	fieldY = field.y;
@@ -67,19 +93,12 @@ function useShovel(field) {
 }
 
 function plantExamplePlant(field, inv_slot) {
-	//Shovel.prototype = Object.create(Phaser.Sprite.prototype);
-	//Shovel.prototype.constructor = Shovel;
 
 	console.log("Planting...");
 	var mouseX = game.input.mousePointer.x;
 	var mouseY = game.input.mousePointer.y;
 	var playerX = player.position.x;
 	var playerY = player.position.y;
-	//console.log(mouseX);
-	//console.log(mouseY);
-	//console.log(playerX);
-	//console.log(playerY);
-	console.log("\n");
 
 	fieldX = field.x;
 	fieldY = field.y;
@@ -89,18 +108,9 @@ function plantExamplePlant(field, inv_slot) {
 	var y = Math.floor((mouseY - fieldY)/64);
 	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
 		field.add(examplePlant, 0, x, y);
-		inventory[inv_slot]=0;
-		currentItem = 0;
-	}
-}
-
-function Sythe(field, inventory, inv_slot) {
-	console.log("SWOOSH\n");
-	var mouseX = game.input.mousePointer.x;
-	var mouseY = game.input.mousePointer.y;
-	var playerX = player.position.x;
-	var playerY = player.position.y;
-	if( ((mouseX > playerX && playerX+128>mouseX) || (mouseX < playerX && playerX-128<mouseX)) && ((mouseY > playerY && playerY+128>mouseY) || (mouseY<playerY && playerY-128<mouseY))) {
-		
+		if(inventory[inv_slot][1] > 0)
+			inventory[inv_slot][1] -= 1;
+		else
+			inventory[inv_slot][0] = 0;
 	}
 }

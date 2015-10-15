@@ -4,7 +4,11 @@ var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, cr
 
 var mobs;
 var plants;
+var projectiles;
+var items;
+
 var field;
+var town;
 var gardenTime;
 
 function preload() {
@@ -26,6 +30,7 @@ function create() {
 	plants = game.add.group();
 	mobs = game.add.group();
 	projectiles = game.add.group();
+	items = game.add.group();
 
 	garden = new Field(game, 11, 9, 32, 32);
 	town = new Field(game, 1, 1, 32, 32);
@@ -34,8 +39,7 @@ function create() {
 
 	player = new Player(game, garden, 200, 200);
 	gardenTime = 0;
-	sword = new Item(game, 300, 300, 'white', true, 1, 1);
-
+	shovel = new Item(game, 300, 300, 'white', false, 1, 1);
 }
 
 function update() {
@@ -50,4 +54,7 @@ function update() {
 	game.physics.arcade.overlap(projectiles, mobs, hitMob);
 	game.physics.arcade.overlap(projectiles, projectiles, hitProj);
 	game.physics.arcade.overlap(projectiles, player, hitPlayer);
+	if(game.physics.arcade.overlap(items, player)){
+		console.log(inventory);
+	}
 }

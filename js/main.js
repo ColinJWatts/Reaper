@@ -62,6 +62,7 @@ Game.ingame.prototype = {
 		town = new Field(game, 1, 1, 32, 32);
 
 		garden.add(Corn, 0, 2, 4);
+		garden.add(Pumpkin, 0, 8, 4);
 
 		player = new Player(game, garden, 200, 200);
 		gardenTime = 0;

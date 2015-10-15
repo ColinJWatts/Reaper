@@ -1,10 +1,10 @@
 Corn.prototype = Object.create(Plant.prototype);
 Corn.prototype.key = 'yellow';
 Corn.prototype.constructor = Corn;
-Corn.prototype.spreadThresh = 3;
-Corn.prototype.spreadRate = 4;
-Corn.prototype.spawnThresh = 1;
-Corn.prototype.spawnRate = 5;
+Corn.prototype.spreadThresh = 8;
+Corn.prototype.spreadRate = 16;
+Corn.prototype.spawnThresh = 4;
+Corn.prototype.spawnRate = 30;
 Corn.prototype.tag = 'corn';
 Corn.prototype.spawnMob = Scarecrow;
 
@@ -32,12 +32,12 @@ Corn.prototype.spread = function(age, field){
 }
 
 Corn.prototype.spreadBonus = function(){
-	this.grow(1.5);
+	this.grow(4);
 }
 
 Corn.prototype.spawn = function(field){
 	//console.log(countMob(this.spawnMob.prototype.tag));
-	if(this.mob == null && countMob(this.spawnMob.prototype.tag) < 1){
+	if(this.mob == null && countMob(this.spawnMob.prototype.tag) < Math.floor(field.count(this.tag)/9)){
 		var enemy = new this.spawnMob(this.game, this.x, this.y, this);
 		this.mob = enemy;
 		mobs.add(enemy);

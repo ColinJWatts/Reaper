@@ -3,7 +3,7 @@
 Scarecrow.prototype = Object.create(Mob.prototype);
 Scarecrow.prototype.key = 'cyan';
 Scarecrow.prototype.constructor = Scarecrow;
-Scarecrow.prototype.moveSpeed = 200;
+Scarecrow.prototype.moveSpeed = 150;
 Scarecrow.prototype.attackRange = 100000;
 Scarecrow.prototype.sightRange = 275;
 Scarecrow.prototype.health = 1;

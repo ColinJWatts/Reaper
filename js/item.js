@@ -1,22 +1,24 @@
 Item.prototype = Object.create(Phaser.Sprite.prototype);
 
 Item.prototype.constructor = Item;
-Item.prototype.inInv = false;
 Item.prototype.key = 'item';
 Item.prototype.itemNum = 0;
 
 
 function Item(game,x,y,key,inInv,inv_slot,itemNum){
+	this.itemNum = itemNum;
+	this.key = key;
 	if(inInv)
 		inventory[0][inv_slot] = itemNum;
 	else{
 		Phaser.Sprite.call(this, game, x, y, key);
 		game.add.existing(this);
+		game.physics.arcade.enable(this);
 	}
 	items.add(this);
 }
 
-function collectItem (item, player) {
+function collectItem (player, item) {
 	var inInv = false;
 	var firstEmptySlot;
 	//0 is a special case since it's actually the farthest key
@@ -25,9 +27,9 @@ function collectItem (item, player) {
 	if(inventory[0][0]==item.itemNum){
 			inventory[1][0] += 1;
 			inInv = true;
-		}
+	}
 	if(inventory[0][0] == 0){
-		firstEmptySlot = i;
+		firstEmptySlot = 0;
 	}
 	//loop through other keys
 	for(var i = 9;i>0;i--){
@@ -45,12 +47,10 @@ function collectItem (item, player) {
 		inventory[1][firstEmptySlot] = 1;
 	}
 	item.destroy();
+	console.log(inventory);
 }
 
 function useItem(itemNum, inv_slot){
-		//shovel
-	if (itemNum == 0)
-		//console.log('ain\'t got no item, fool');
 	if (itemNum == 1){
 		useShovel(currField);
 	}
@@ -108,9 +108,9 @@ function plantExamplePlant(field, inv_slot) {
 	var y = Math.floor((mouseY - fieldY)/64);
 	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
 		field.add(examplePlant, 0, x, y);
-		if(inventory[inv_slot][1] > 0)
-			inventory[inv_slot][1] -= 1;
+		if(inventory[1][inv_slot] > 0)
+			inventory[1][inv_slot] -= 1;
 		else
-			inventory[inv_slot][0] = 0;
+			inventory[0][inv_slot] = 0;
 	}
 }

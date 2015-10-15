@@ -12,7 +12,7 @@ var town;
 var gardenTime;
 
 Game = {};
-
+/***********************************MAIN MENU****************************************/
 Game.MainMenu = function(){ }; 
 Game.MainMenu.prototype = {
 	preload : function(){
@@ -27,14 +27,71 @@ Game.MainMenu.prototype = {
 	update : function(){
 		game.input.keyboard.onDownCallback = function(e) {
 				console.log(e.keyCode);
-				
-				this.game.state.start("ingame");
+				this.game.state.start("townstate");
 		}
 	}
 }
 
-Game.ingame = function(){ };
-Game.ingame.prototype = {
+/***************************************IN GAME************************************/
+Game.townstate = function(){ };
+Game.townstate.prototype = {
+
+	preload: function() {
+		game.input.keyboard.onDownCallback = function(e) {
+		}
+		game.load.image('black', 'assets/black.png');
+		game.load.image('blue', 'assets/blue.png');
+		game.load.image('cyan', 'assets/cyan.png');
+		game.load.image('green', 'assets/green.png');
+		game.load.image('magenta', 'assets/magenta.png');
+		game.load.image('red', 'assets/red.png');
+		game.load.image('white', 'assets/white.png');
+		game.load.image('yellow', 'assets/yellow.png');
+		game.load.image('dirt', 'assets/dirt.png');
+		//game.load.sound('dig', 'assets/sound/dig.mp3');
+	},
+
+
+ 	create : function() {
+		plants = game.add.group();
+		mobs = game.add.group();
+		projectiles = game.add.group();
+		items = game.add.group();
+
+		//garden = new Field(game, 11, 9, 32, 32);
+		town = new Field(game, 1, 1, 32, 32);
+
+		//garden.add(Corn, 0, 2, 4);
+
+		player = new Player(game, town, 200, 200);
+		gardenTime = 0;
+		shovel = new Item(game, 300, 300, 'white', false, 1, 1);
+	},
+
+	update : function() {
+	
+		gardenTime += game.time.elapsed/1000;
+		/*if(currField == garden){
+			garden.tick(gardenTime);
+			gardenTime = 0;
+		}
+		*/
+			if(player.position.x >= game.world.width){
+				console.log("entered garden");
+				this.game.state.start('gardenstate');
+			}
+
+		game.physics.arcade.collide(mobs, mobs);
+		game.physics.arcade.overlap(projectiles, mobs, hitMob);
+		game.physics.arcade.overlap(projectiles, projectiles, hitProj);
+		game.physics.arcade.overlap(projectiles, player, hitPlayer);
+		game.physics.arcade.overlap(items, player, collectItem);
+	}
+}
+
+/****************************************TOWN***************************************/
+Game.gardenstate = function(){ };
+Game.gardenstate.prototype = {
 
 	preload: function() {
 		game.input.keyboard.onDownCallback = function(e) {
@@ -59,7 +116,7 @@ Game.ingame.prototype = {
 		items = game.add.group();
 
 		garden = new Field(game, 11, 9, 32, 32);
-		town = new Field(game, 1, 1, 32, 32);
+		//town = new Field(game, 1, 1, 32, 32);
 
 		garden.add(Corn, 0, 2, 4);
 
@@ -75,6 +132,11 @@ Game.ingame.prototype = {
 			garden.tick(gardenTime);
 			gardenTime = 0;
 		}
+		if(player.position.x <= 0)
+		{
+			console.log("entered town");
+			this.game.state.start('townstate');
+		}
 
 		game.physics.arcade.collide(mobs, mobs);
 		game.physics.arcade.overlap(projectiles, mobs, hitMob);
@@ -86,8 +148,15 @@ Game.ingame.prototype = {
 	}
 }
 
+
+
+
+
+
+/**************************************GAME STATE START***************************/
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', Game.MainMenu);
 game.state.add('MainMenu',Game.MainMenu);
-game.state.add('ingame', Game.ingame);
+game.state.add('gardenstate', Game.gardenstate);
+game.state.add('townstate', Game.townstate)
 
 game.state.start('MainMenu');

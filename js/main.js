@@ -79,12 +79,7 @@ Game.townstate.prototype = {
 		}
 		*/
 
-		game.camera.x = player.body.x-100;
-		game.camera.y = player.body.y-100;
-			if(player.position.x >= game.world.width){
-				console.log("entered garden");
-				this.game.state.start('gardenstate');
-			}
+		movecamera();
 
 		game.physics.arcade.collide(mobs, mobs);
 		game.physics.arcade.overlap(projectiles, mobs, hitMob);
@@ -143,6 +138,8 @@ Game.gardenstate.prototype = {
 			console.log("entered town");
 			this.game.state.start('townstate');
 		}
+
+		movecamera();
 
 		game.physics.arcade.collide(mobs, mobs);
 		game.physics.arcade.overlap(projectiles, mobs, hitMob);

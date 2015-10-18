@@ -129,3 +129,19 @@ function checkField(){
 	}
 }
 */
+
+function movecamera(){
+	if(game.camera.x < player.body.x-game.width/2 - 50)
+		game.camera.x = player.body.x-game.width/2 -50;
+	if(game.camera.x > player.body.x-game.width/2 + 50)
+		game.camera.x = player.body.x-game.width/2 + 50;
+	if(game.camera.y < player.body.y-game.height/2 - 50)
+		game.camera.y = player.body.y-game.height/2 -50;
+	if(game.camera.y > player.body.y-game.height/2 + 50)
+		game.camera.y = player.body.y-game.height/2 +50;
+		if(player.position.x >= game.world.width){
+			console.log("entered garden");
+			this.game.state.start('gardenstate');
+		}
+
+}

@@ -10,11 +10,12 @@ var direction;
 var currField;
 var inventory;
 var inv_slot;
+var money = 15;
 
 Player.prototype.moveSpeed = 150;
 
 function Player(game, field, x, y) {
-    Phaser.Sprite.call(this, game, x, y, 'red');
+    Phaser.Sprite.call(this, game, x, y, 'player');
     //1st row of inventory is the identifier (e.g a 1 is a shovel, etc.)
     //2nd row is how many of the item the player has
     //this does mean you could get 40 shovels by the end if they drop, but this shouldn't ever happen

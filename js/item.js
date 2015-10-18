@@ -3,11 +3,12 @@ Item.prototype = Object.create(Phaser.Sprite.prototype);
 Item.prototype.constructor = Item;
 Item.prototype.key = 'item';
 Item.prototype.itemNum = 0;
-
+Item.prototype.cost = 0;
 
 function Item(game,x,y,key,inInv,inv_slot,itemNum){
 	this.itemNum = itemNum;
 	this.key = key;
+	this.cost = 0;
 	if(inInv)
 		inventory[0][inv_slot] = itemNum;
 	else{
@@ -19,6 +20,9 @@ function Item(game,x,y,key,inInv,inv_slot,itemNum){
 }
 
 function collectItem (player, item) {
+	if(money < item.cost)
+		return;
+	money -= item.cost;
 	var inInv = false;
 	var firstEmptySlot;
 	//0 is a special case since it's actually the farthest key
@@ -80,7 +84,6 @@ function useShovel(field) {
 	var mouseY = game.input.mousePointer.y;
 	var playerX = player.position.x;
 	var playerY = player.position.y;
-
 
 	fieldX = field.x;
 	fieldY = field.y;

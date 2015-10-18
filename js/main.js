@@ -12,7 +12,7 @@ var town;
 var gardenTime;
 
 Game = {};
-/***********************************MAIN MENU****************************************/
+//**********************************MAIN MENU****************************************
 Game.MainMenu = function(){ }; 
 Game.MainMenu.prototype = {
 	preload : function(){
@@ -32,13 +32,18 @@ Game.MainMenu.prototype = {
 	}
 }
 
-/***************************************IN GAME************************************/
+//***************************************IN GAME************************************
 Game.townstate = function(){ };
 Game.townstate.prototype = {
 
 	preload: function() {
 		game.input.keyboard.onDownCallback = function(e) {
 		}
+		game.load.image('player', 'assets/player.jpg');
+		game.load.image('scarecrow', 'assets/scarecrow.jpg');
+		game.load.image('crow', 'assets/crow.jpg');
+		game.load.image('corn', 'assets/corn.jpg');
+		game.load.image('scythe', 'assets/scythe.jpg');
 		game.load.image('black', 'assets/black.png');
 		game.load.image('blue', 'assets/blue.png');
 		game.load.image('cyan', 'assets/cyan.png');
@@ -65,7 +70,7 @@ Game.townstate.prototype = {
 
 		player = new Player(game, town, 200, 200);
 		gardenTime = 0;
-		shovel = new Item(game, 300, 300, 'white', false, 1, 1);
+		shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
 	},
 
 	update : function() {
@@ -89,13 +94,18 @@ Game.townstate.prototype = {
 	}
 }
 
-/****************************************TOWN***************************************/
+//****************************************TOWN***************************************
 Game.gardenstate = function(){ };
 Game.gardenstate.prototype = {
 
 	preload: function() {
 		game.input.keyboard.onDownCallback = function(e) {
 		}
+		game.load.image('player', 'assets/player.jpg');
+		game.load.image('scarecrow', 'assets/scarecrow.jpg');
+		game.load.image('crow', 'assets/crow.jpg');
+		game.load.image('corn', 'assets/corn.jpg');
+		game.load.image('scythe', 'assets/scythe.jpg');
 		game.load.image('black', 'assets/black.png');
 		game.load.image('blue', 'assets/blue.png');
 		game.load.image('cyan', 'assets/cyan.png');
@@ -123,7 +133,7 @@ Game.gardenstate.prototype = {
 
 		player = new Player(game, garden, 200, 200);
 		gardenTime = 0;
-		shovel = new Item(game, 300, 300, 'white', false, 1, 1);
+		shop = new Shop(game, 400, 200, 'blue', [[1,2,3],[5, 10, 20]]);
 	},
 
 	update : function() {
@@ -143,9 +153,7 @@ Game.gardenstate.prototype = {
 		game.physics.arcade.overlap(projectiles, mobs, hitMob);
 		game.physics.arcade.overlap(projectiles, projectiles, hitProj);
 		game.physics.arcade.overlap(projectiles, player, hitPlayer);
-		if(game.physics.arcade.overlap(items, player)){
-			console.log(inventory);
-		}
+		game.physics.arcade.overlap(items, player, collectItem)
 	}
 }
 
@@ -154,7 +162,7 @@ Game.gardenstate.prototype = {
 
 
 
-/**************************************GAME STATE START***************************/
+//**************************************GAME STATE START***************************
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', Game.MainMenu);
 game.state.add('MainMenu',Game.MainMenu);
 game.state.add('gardenstate', Game.gardenstate);

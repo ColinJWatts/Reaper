@@ -1,7 +1,7 @@
 //Example Mob
 
 Scarecrow.prototype = Object.create(Mob.prototype);
-Scarecrow.prototype.key = 'cyan';
+Scarecrow.prototype.key = 'scarecrow';
 Scarecrow.prototype.constructor = Scarecrow;
 Scarecrow.prototype.moveSpeed = 150;
 Scarecrow.prototype.attackRange = 100000;

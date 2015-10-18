@@ -1,7 +1,7 @@
 Crow.prototype = Object.create(Proj.prototype);
 
 Crow.prototype.constructor = Crow;
-Crow.prototype.key = "black";
+Crow.prototype.key = "crow";
 Crow.prototype.moveSpeed = 300;
 Crow.prototype.lifetime = 9;
 Crow.prototype.damage = 4;

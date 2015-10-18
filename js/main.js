@@ -58,6 +58,8 @@ Game.townstate.prototype = {
 
 
  	create : function() {
+ 		game.world.setBounds(0, 0, 1000, 1000);
+
 		plants = game.add.group();
 		mobs = game.add.group();
 		projectiles = game.add.group();
@@ -81,6 +83,9 @@ Game.townstate.prototype = {
 			gardenTime = 0;
 		}
 		*/
+
+		game.camera.x = player.body.x-100;
+		game.camera.y = player.body.y-100;
 			if(player.position.x >= game.world.width){
 				console.log("entered garden");
 				this.game.state.start('gardenstate');

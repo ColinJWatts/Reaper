@@ -72,7 +72,7 @@ Game.townstate.prototype = {
 
 		player = new Player(game, town, 200, 200);
 		gardenTime = 0;
-		shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
+		//shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
 	},
 
 	update : function() {
@@ -133,7 +133,7 @@ Game.gardenstate.prototype = {
 
 		player = new Player(game, garden, 200, 200);
 		gardenTime = 0;
-		shop = new Shop(game, 400, 200, 'blue', [[1,2,3],[5, 10, 20]]);
+		//shop = new Shop(game, 400, 200, 'blue', [[1,2,3],[5, 10, 20]]);
 	},
 
 	update : function() {

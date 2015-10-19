@@ -16,6 +16,7 @@ Player.prototype.moveSpeed = 150;
 
 function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'player');
+    this.scale.set(0.035, 0.035);
     //1st row of inventory is the identifier (e.g a 1 is a shovel, etc.)
     //2nd row is how many of the item the player has
     //this does mean you could get 40 shovels by the end if they drop, but this shouldn't ever happen
@@ -132,14 +133,8 @@ function checkField(){
 */
 
 function movecamera(){
-	if(game.camera.x < player.body.x-game.width/2 - 50)
-		game.camera.x = player.body.x-game.width/2 -50;
-	if(game.camera.x > player.body.x-game.width/2 + 50)
-		game.camera.x = player.body.x-game.width/2 + 50;
-	if(game.camera.y < player.body.y-game.height/2 - 50)
-		game.camera.y = player.body.y-game.height/2 -50;
-	if(game.camera.y > player.body.y-game.height/2 + 50)
-		game.camera.y = player.body.y-game.height/2 +50;
+	game.camera.x = player.body.x-game.width/2 - 50*Math.tanh((player.body.x-game.camera.x-game.width/2)/50);
+	game.camera.y = player.body.y-game.height/2 - 50*Math.tanh((player.body.y-game.camera.y-game.height/2)/50);
 		if(player.position.x >= game.world.width){
 			console.log("entered garden");
 			this.game.state.start('gardenstate');

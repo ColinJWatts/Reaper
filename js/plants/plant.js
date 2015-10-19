@@ -14,10 +14,12 @@ Plant.prototype.key = 'dirt';
 Plant.prototype.tag = 'dirt';
 Plant.prototype.spawnMob = Mob;
 Plant.prototype.mob = null;
+Plant.prototype.field = null;
 
 //x and y are grid positions, not world coordinates
 function Plant(game, field, x, y){
 	Phaser.Sprite.call(this, game, x*64+field.x, y*64+field.y, this.key)
+	this.field = field;
 	this.farmX = x;
 	this.farmY = y;
 	this.age = 0;

@@ -13,6 +13,7 @@ examplePlant.prototype.spawnMob = exampleMob;
 //x and y are grid positions, not world coordinates
 function examplePlant(game, field, x, y){
 	Phaser.Sprite.call(this, game, x*64+field.x, y*64+field.y, this.key)
+	this.field = field;
 	this.farmX = x;
 	this.farmY = y;
 	this.anchor.set(0.5, 0.5);

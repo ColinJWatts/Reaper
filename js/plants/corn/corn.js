@@ -1,5 +1,5 @@
 Corn.prototype = Object.create(Plant.prototype);
-Corn.prototype.key = 'corn';
+Corn.prototype.key = 'green';
 Corn.prototype.constructor = Corn;
 Corn.prototype.spreadThresh = 8;
 Corn.prototype.spreadRate = 16;
@@ -11,6 +11,7 @@ Corn.prototype.spawnMob = Scarecrow;
 //x and y are grid positions, not world coordinates
 function Corn(game, field, x, y){
 	Phaser.Sprite.call(this, game, x*64+field.x, y*64+field.y, this.key)
+	this.field = field;
 	this.farmX = x;
 	this.farmY = y;
 	this.anchor.set(0.5, 0.5);

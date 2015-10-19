@@ -58,17 +58,17 @@ Game.townstate.prototype = {
 
 
  	create : function() {
- 		game.world.setBounds(0, 0, 1000, 1000);
+ 		game.world.setBounds(0, 0, 4000, 800);
 
 		plants = game.add.group();
 		mobs = game.add.group();
 		projectiles = game.add.group();
 		items = game.add.group();
 
-		//garden = new Field(game, 11, 9, 32, 32);
-		town = new Field(game, 1, 1, 32, 32);
+		garden = new Field(game, 10, 10, 800, 32);
 
-		//garden.add(Corn, 0, 2, 4);
+		garden.add(Corn, 0, 2, 4);
+		garden.add(Pumpkin, 0, 8, 4);
 
 		player = new Player(game, town, 200, 200);
 		gardenTime = 0;
@@ -78,11 +78,11 @@ Game.townstate.prototype = {
 	update : function() {
 	
 		gardenTime += game.time.elapsed/1000;
-		/*if(currField == garden){
+		if(currField == garden){
 			garden.tick(gardenTime);
 			gardenTime = 0;
 		}
-		*/
+		
 
 		movecamera();
 
@@ -91,71 +91,6 @@ Game.townstate.prototype = {
 		game.physics.arcade.overlap(projectiles, projectiles, hitProj);
 		game.physics.arcade.overlap(projectiles, player, hitPlayer);
 		game.physics.arcade.overlap(items, player, collectItem);
-	}
-}
-
-//****************************************TOWN***************************************
-Game.gardenstate = function(){ };
-Game.gardenstate.prototype = {
-
-	preload: function() {
-		game.input.keyboard.onDownCallback = function(e) {
-		}
-		game.load.image('player', 'assets/player.jpg');
-		game.load.image('scarecrow', 'assets/scarecrow.jpg');
-		game.load.image('crow', 'assets/crow.jpg');
-		game.load.image('corn', 'assets/corn.jpg');
-		game.load.image('scythe', 'assets/scythe.jpg');
-		game.load.image('black', 'assets/black.png');
-		game.load.image('blue', 'assets/blue.png');
-		game.load.image('cyan', 'assets/cyan.png');
-		game.load.image('green', 'assets/green.png');
-		game.load.image('magenta', 'assets/magenta.png');
-		game.load.image('red', 'assets/red.png');
-		game.load.image('white', 'assets/white.png');
-		game.load.image('yellow', 'assets/yellow.png');
-		game.load.image('dirt', 'assets/dirt.png');
-		//game.load.sound('dig', 'assets/sound/dig.mp3');
-	},
-
-
- 	create : function() {
-		plants = game.add.group();
-		mobs = game.add.group();
-		projectiles = game.add.group();
-		items = game.add.group();
-
-		garden = new Field(game, 11, 9, 32, 32);
-		//town = new Field(game, 1, 1, 32, 32);
-
-		garden.add(Corn, 0, 2, 4);
-		garden.add(Pumpkin, 0, 8, 4);
-
-		player = new Player(game, garden, 200, 200);
-		gardenTime = 0;
-		//shop = new Shop(game, 400, 200, 'blue', [[1,2,3],[5, 10, 20]]);
-	},
-
-	update : function() {
-	
-		gardenTime += game.time.elapsed/1000;
-		if(currField == garden){
-			garden.tick(gardenTime);
-			gardenTime = 0;
-		}
-		if(player.position.x <= 0)
-		{
-			console.log("entered town");
-			this.game.state.start('townstate');
-		}
-
-		movecamera();
-
-		game.physics.arcade.collide(mobs, mobs);
-		game.physics.arcade.overlap(projectiles, mobs, hitMob);
-		game.physics.arcade.overlap(projectiles, projectiles, hitProj);
-		game.physics.arcade.overlap(projectiles, player, hitPlayer);
-		game.physics.arcade.overlap(items, player, collectItem)
 	}
 }
 

@@ -51,7 +51,6 @@ function collectItem (player, item) {
 		inventory[1][firstEmptySlot] = 1;
 	}
 	item.destroy();
-	console.log(inventory);
 }
 
 function useItem(itemNum, inv_slot){
@@ -81,8 +80,8 @@ function useItem(itemNum, inv_slot){
 function useShovel(field) {
 
 	console.log("Using shovel...");
-	var mouseX = game.input.mousePointer.x;
-	var mouseY = game.input.mousePointer.y;
+	var mouseX = game.input.mousePointer.x + game.camera.x;
+	var mouseY = game.input.mousePointer.y + game.camera.y;
 	var playerX = player.position.x;
 	var playerY = player.position.y;
 
@@ -99,8 +98,8 @@ function useShovel(field) {
 function plantPlant(field, inv_slot, plant) {
 
 	console.log("Planting...");
-	var mouseX = game.input.mousePointer.x;
-	var mouseY = game.input.mousePointer.y;
+	var mouseX = game.input.mousePointer.x + game.camera.x;
+	var mouseY = game.input.mousePointer.y + game.camera.y;
 	var playerX = player.position.x;
 	var playerY = player.position.y;
 

@@ -8,18 +8,19 @@ var cursors;
 var currentItem;
 var direction;
 var currField;
-var inventory = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
+var inventory = [[1, 1, 1, 1, 1, 1, 1, 1, 1, 1],[0, 1, 5, 0, 0, 0, 0, 0, 0, 0]];
 var inv_slot;
 var money = 15;
 Player.prototype.moveSpeed = 150;
 
 function Player(game, field, x, y) {
-    Phaser.Sprite.call(this, game, x, y, 'player');
-    this.anchor.setTo(0.5, 0.5);
-    game.physics.arcade.enable(this);
-	inventoryUI = game.add.text(game.world.width/2-200, game.camera.height - 100, '[0][0][0][0][0][0][0][0][0][0]', { font: '24px Arial', fill: '#fff' });
-
-    buildInventory(inventory);
+	Phaser.Sprite.call(this, game, x, y, 'player');
+	this.anchor.setTo(0.5, 0.5);
+	game.physics.arcade.enable(this);
+	
+	inventoryUI = game.add.text(game.world.width/2-200, game.camera.height - 30, '0     0     0     0     0     0     0     0     0     0', { font: '24px Arial', fill: '#fff' });
+	buttons = game.add.group();
+	buildInventory(inventory);
     
     //currField = garden;
 
@@ -64,9 +65,40 @@ Player.prototype.update = function() {
 function buildInventory(i){
 	//1st row of inventory is the identifier (e.g a 1 is a shovel, etc.)
     //2nd row is how many of the item the player has
-    //this does mean you could get 40 shovels by the end if they drop, but this shouldn't ever happen
     inventoryUI.destroy();
-    inventoryUI = game.add.text(game.camera.width/2-100 + game.camera.x, game.camera.height - 100 + game.camera.y, '['+i[0][1]+']['+i[0][2]+']['+i[0][3]+']['+i[0][4]+']['+i[0][5]+']['+i[0][6]+']['+i[0][7]+']['+i[0][8]+']['+i[0][9]+']['+i[0][0]+']', { font: '24px Arial', fill: '#fff' });
+    buttons.removeAll();
+    //Goddamn 0 case
+    if(i[0][0] == 1){
+		var invButton1 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
+		invButton1.scale.setTo(.4,.4);
+		buttons.add(invButton1);
+	}
+	if(i[0][0] == 2){
+		var invButton2 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'corn');
+		invButton2.scale.setTo(.4,.4);
+		buttons.add(invButton2);
+	}/*
+	if(i[0][j] == 3){
+		var invButton3 = new Image(game, xplace, yplace, 'pumpSeed');
+		buttons.add(invButton3);
+	}*/
+    for(var j = 1;j<10;j++){
+		if(i[0][j] == 1){
+			var invButton1 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
+			invButton1.scale.setTo(.4,.4);
+			buttons.add(invButton1);
+		}
+		if(i[0][j] == 2){
+			var invButton2 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'corn');
+			invButton2.scale.setTo(.4,.4);
+			buttons.add(invButton2);
+		}/*
+		if(i[0][j] == 3){
+			var invButton3 = new Image(game, xplace, yplace, 'pumpSeed');
+			buttons.add(invButton3);
+		}*/
+	}
+    inventoryUI = game.add.text(game.camera.width/2 - 110 + game.camera.x, game.camera.height - 30 + game.camera.y, i[1][1]+'      '+i[1][2]+'      '+i[1][3]+'      '+i[1][4]+'      '+i[1][5]+'      '+i[1][6]+'      '+i[1][7]+'      '+i[1][8]+'      '+i[1][9]+'      '+i[1][0], { font: '12px Arial', fill: '#fff' });
 }
 
 function movePlayer() {

@@ -162,11 +162,6 @@ Game.townstate.prototype = {
 	preload: function() {
 		game.input.keyboard.onDownCallback = function(e) {
 		}
-		game.load.image('player', 'assets/player.png');
-		game.load.image('scarecrow', 'assets/scarecrow.png');
-		game.load.image('crow', 'assets/crow.png');
-		game.load.image('corn', 'assets/corn.png');
-		game.load.image('scythe', 'assets/scythe.png');
 		game.load.image('black', 'assets/black.png');
 		game.load.image('blue', 'assets/blue.png');
 		game.load.image('cyan', 'assets/cyan.png');
@@ -177,6 +172,17 @@ Game.townstate.prototype = {
 		game.load.image('yellow', 'assets/yellow.png');
 		game.load.image('dirt', 'assets/dirt.png');
 		game.load.image('none', 'assets/invisible.png');
+
+
+		game.load.image('corn', 'assets/corn.png');
+		game.load.image('scythe', 'assets/scythe.png');
+		game.load.image('player', 'assets/player.png');
+		game.load.image('scarecrow', 'assets/scarecrow.png');
+		game.load.image('crow', 'assets/crow.png');
+		game.load.image('pumpkin', 'assets/pumkinDrop.png');
+		game.load.image('cornPlant', 'assets/cornPlant.png');
+		game.load.image('horseman', 'assets/horselessHeadman.png');
+		game.load.image('pumpkinPlant', 'assets/pumpkinPlant.png');
 		//game.load.sound('dig', 'assets/sound/dig.mp3');
 	},
 

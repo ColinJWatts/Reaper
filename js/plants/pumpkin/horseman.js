@@ -1,7 +1,7 @@
 //Example Mob
 
 Horseman.prototype = Object.create(Mob.prototype);
-Horseman.prototype.key = 'blue';
+Horseman.prototype.key = 'horseman';
 Horseman.prototype.constructor = Horseman;
 Horseman.prototype.moveSpeed = 300;
 Horseman.prototype.attackRange = 100;

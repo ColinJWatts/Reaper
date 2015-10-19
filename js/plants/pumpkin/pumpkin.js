@@ -1,7 +1,7 @@
 
 
 Pumpkin.prototype = Object.create(Plant.prototype);
-Pumpkin.prototype.key = 'magenta';
+Pumpkin.prototype.key = 'pumpkinPlant';
 Pumpkin.prototype.constructor = Pumpkin;
 Pumpkin.prototype.spreadThresh = 20;
 Pumpkin.prototype.spreadRate = 40;

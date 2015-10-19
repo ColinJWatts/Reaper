@@ -1,5 +1,5 @@
 Corn.prototype = Object.create(Plant.prototype);
-Corn.prototype.key = 'green';
+Corn.prototype.key = 'cornPlant';
 Corn.prototype.constructor = Corn;
 Corn.prototype.spreadThresh = 8;
 Corn.prototype.spreadRate = 16;

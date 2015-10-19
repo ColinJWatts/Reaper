@@ -1,6 +1,7 @@
 JackOLantern.prototype = Object.create(Proj.prototype);
 
 JackOLantern.prototype.constructor = JackOLantern;
+JackOLantern.prototype.key = 'pumpkin';
 
 JackOLantern.prototype.moveSpeed = 1400;
 JackOLantern.prototype.lifetime = 2;

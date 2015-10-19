@@ -55,12 +55,13 @@ function collectItem (player, item) {
 }
 
 function useItem(itemNum, inv_slot){
-	if (itemNum == 1){
+	if (itemNum == 1)
 		useShovel(currField);
-	}
-	if (itemNum == 2) {
-		plantExamplePlant(currField, inventory, inv_slot);
-	}
+	if (itemNum == 2) 
+		plantPlant(currField, inv_slot, Corn);
+	if (itemNum == 3)
+		plantPlant(currField, inv_slot, Pumpkin);
+
 
 	/*
 		//Scythe
@@ -95,7 +96,7 @@ function useShovel(field) {
 	}
 }
 
-function plantExamplePlant(field, inv_slot) {
+function plantPlant(field, inv_slot, plant) {
 
 	console.log("Planting...");
 	var mouseX = game.input.mousePointer.x;
@@ -110,7 +111,7 @@ function plantExamplePlant(field, inv_slot) {
 	var x = Math.floor((mouseX - fieldX)/64);
 	var y = Math.floor((mouseY - fieldY)/64);
 	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
-		field.add(examplePlant, 0, x, y);
+		field.add(plant, 0, x, y);
 		if(inventory[1][inv_slot] > 0)
 			inventory[1][inv_slot] -= 1;
 		else

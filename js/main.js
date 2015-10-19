@@ -10,7 +10,7 @@ var items;
 var field;
 var town;
 var gardenTime;
-var text1, text2, text3, text4;
+var text1, text2, text3, text4, text5, text6, text7, text8, text9, text10, text11;
 Game = {};
 //**********************************MAIN MENU****************************************
 Game.MainMenu = function(){ }; 
@@ -61,6 +61,16 @@ Game.MainMenu.prototype = {
 			{
 				this.game.state.start("townstate");
 			}
+		if(game.input.activePointer.isDown && text4.fill == '#FF0000')
+			{
+				this.game.state.start("instructions");
+			}
+		if(game.input.activePointer.isDown && text5.fill == '#FF0000')
+			{
+				this.game.state.start("credits");
+			}
+		
+		
 		function mouseover(text) {
     		text.fill = '#FF0000';    		
 		}
@@ -68,6 +78,81 @@ Game.MainMenu.prototype = {
 			text.fill = '#FFFFFF';
 		}
 	}
+}
+
+/***************************************INSTRUCTIONS*****************************************/
+Game.instructions = function(){ };
+Game.instructions.prototype = {
+	preload : function() {
+	},
+	create : function() {
+		text6 = game.add.text(game.world.centerX, game.world.centerY - 200, 'INSTRUCTIONS');
+		text6.fill = '#FFFFFF';
+		text6.fontSize = 40;
+		text6.anchor.setTo(0.5);
+		text7 = game.add.text(game.world.centerX, game.world.centerY - 100, 'Move with WASD or arrow keys\nRotate through items with number keys\nAim with the mouse and click to use items');
+		text7.fill = '#FFFFFF';
+		text7.fontSize = 30;
+		text7.anchor.setTo(0.5);
+		text8 = game.add.text(game.world.centerX, game.world.centerY + 75, 'Back to Main Menu');
+		text8.fill = '#FFFFFF';
+		text8.fontSize = 30;
+		text8.anchor.setTo(0.5);
+		text8.inputEnabled = true;
+	},
+	update : function() {
+		text8.events.onInputOver.add(mouseover, this);
+		text8.events.onInputOut.add(off, this);
+		if(game.input.activePointer.isDown && text8.fill == '#FF0000')
+		{
+			this.game.state.start("MainMenu");
+		}
+		function mouseover(text) {
+    		text.fill = '#FF0000';    		
+		}
+		function off(text) {
+			text.fill = '#FFFFFF';
+		}
+	}
+
+}
+
+/*******************************************CREDITS********************************************/
+Game.credits = function(){ };
+Game.credits.prototype = {
+	preload : function() {
+	},
+	create : function() {
+		text9 = game.add.text(game.world.centerX, game.world.centerY - 200, 'CREDITS');
+		text9.fill = '#FFFFFF';
+		text9.fontSize = 40;
+		text9.anchor.setTo(0.5);
+		text10 = game.add.text(game.world.centerX, game.world.centerY, 'Programmers:\nColin Watts\nNathan Watts\nBrian Rappaport\nQuinn Collins\n\nArt:\nFury Sheron');
+		text10.fill = '#FFFFFF';
+		text10.fontSize = 30;
+		text10.anchor.setTo(0.5);
+		text11 = game.add.text(game.world.centerX, game.world.centerY + 200, 'Back to Main Menu');
+		text11.fill = '#FFFFFF';
+		text11.fontSize = 30;
+		text11.anchor.setTo(0.5);
+		text11.inputEnabled = true;
+		
+	},
+	update : function() {
+		text11.events.onInputOver.add(mouseover, this);
+		text11.events.onInputOut.add(off, this);
+		if(game.input.activePointer.isDown && text11.fill == '#FF0000')
+		{
+			this.game.state.start("MainMenu");
+		}
+		function mouseover(text) {
+    		text.fill = '#FF0000';    		
+		}
+		function off(text) {
+			text.fill = '#FFFFFF';
+		}
+	}
+
 }
 
 //***************************************IN GAME************************************
@@ -142,6 +227,7 @@ Game.townstate.prototype = {
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', Game.MainMenu);
 game.state.add('MainMenu',Game.MainMenu);
 game.state.add('gardenstate', Game.gardenstate);
-game.state.add('townstate', Game.townstate)
-
+game.state.add('townstate', Game.townstate);
+game.state.add('instructions', Game.instructions);
+game.state.add('credits', Game.credits);
 game.state.start('MainMenu');

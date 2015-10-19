@@ -77,11 +77,11 @@ Game.townstate.prototype = {
 	preload: function() {
 		game.input.keyboard.onDownCallback = function(e) {
 		}
-		game.load.image('player', 'assets/player.jpg');
-		game.load.image('scarecrow', 'assets/scarecrow.jpg');
-		game.load.image('crow', 'assets/crow.jpg');
-		game.load.image('corn', 'assets/corn.jpg');
-		game.load.image('scythe', 'assets/scythe.jpg');
+		game.load.image('player', 'assets/player.png');
+		game.load.image('scarecrow', 'assets/scarecrow.png');
+		game.load.image('crow', 'assets/crow.png');
+		game.load.image('corn', 'assets/corn.png');
+		game.load.image('scythe', 'assets/scythe.png');
 		game.load.image('black', 'assets/black.png');
 		game.load.image('blue', 'assets/blue.png');
 		game.load.image('cyan', 'assets/cyan.png');

@@ -16,7 +16,7 @@ Player.prototype.moveSpeed = 150;
 
 function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'player');
-    this.scale.set(0.035, 0.035);
+    //this.scale.set(0.035, 0.035);
     //1st row of inventory is the identifier (e.g a 1 is a shovel, etc.)
     //2nd row is how many of the item the player has
     //this does mean you could get 40 shovels by the end if they drop, but this shouldn't ever happen
@@ -59,6 +59,7 @@ function Player(game, field, x, y) {
 Player.prototype.update = function() {
 	movePlayer();
 	checkUsedItem();
+	this.rotation = Math.atan2(this.y - game.input.mousePointer.y, this.x - game.input.mousePointer.x);
 //	checkField();
 }
 

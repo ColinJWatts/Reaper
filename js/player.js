@@ -56,7 +56,10 @@ function Player(game, field, x, y) {
 Player.prototype.update = function() {
 	movePlayer();
 	checkUsedItem();
+<<<<<<< HEAD
 	this.rotation = Math.atan2(this.y - game.input.mousePointer.y - game.camera.y, this.x - game.input.mousePointer.x - game.camera.x) - Math.PI/2;
+=======
+>>>>>>> b7e71db55d7e6f103b8f0cfa10ab11996d55e402
 	buildInventory(inventory);
 //	checkField();
 }

@@ -8,22 +8,19 @@ var cursors;
 var currentItem;
 var direction;
 var currField;
-var inventory;
+var inventory = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 var inv_slot;
 var money = 15;
-
 Player.prototype.moveSpeed = 150;
 
 function Player(game, field, x, y) {
     Phaser.Sprite.call(this, game, x, y, 'player');
-    //this.scale.set(0.035, 0.035);
-    //1st row of inventory is the identifier (e.g a 1 is a shovel, etc.)
-    //2nd row is how many of the item the player has
-    //this does mean you could get 40 shovels by the end if they drop, but this shouldn't ever happen
-    inventory = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
     this.anchor.setTo(0.5, 0.5);
     game.physics.arcade.enable(this);
+	inventoryUI = game.add.text(game.world.width/2-200, game.camera.height - 100, '[0][0][0][0][0][0][0][0][0][0]', { font: '24px Arial', fill: '#fff' });
 
+    buildInventory(inventory);
+    
     //currField = garden;
 
     this.position.x = x;
@@ -59,30 +56,38 @@ function Player(game, field, x, y) {
 Player.prototype.update = function() {
 	movePlayer();
 	checkUsedItem();
-	this.rotation = Math.atan2(this.y - game.input.mousePointer.y, this.x - game.input.mousePointer.x);
+	buildInventory(inventory);
 //	checkField();
+}
+
+function buildInventory(i){
+	//1st row of inventory is the identifier (e.g a 1 is a shovel, etc.)
+    //2nd row is how many of the item the player has
+    //this does mean you could get 40 shovels by the end if they drop, but this shouldn't ever happen
+    inventoryUI.destroy();
+    inventoryUI = game.add.text(game.camera.width/2-100 + game.camera.x, game.camera.height - 100 + game.camera.y, '['+i[0][1]+']['+i[0][2]+']['+i[0][3]+']['+i[0][4]+']['+i[0][5]+']['+i[0][6]+']['+i[0][7]+']['+i[0][8]+']['+i[0][9]+']['+i[0][0]+']', { font: '24px Arial', fill: '#fff' });
 }
 
 function movePlayer() {
 	// controls player movement
 	testV = 0;
-	testH = 0;	
-	if (cursors.left.isDown || cursors.a.isDown) {
+	testH = 0;
+	if ((cursors.left.isDown || cursors.a.isDown) && player.position.x >= 32) {
 		player.body.velocity.x = -player.moveSpeed;
 		direction = "L";
 		testH = 1;
 	}
-	if (cursors.right.isDown || cursors.d.isDown) {
+	if ((cursors.right.isDown || cursors.d.isDown)){
 		player.body.velocity.x  = player.moveSpeed;
 		direction = "R";
 		testH = 1;
 	}
-	if (cursors.up.isDown || cursors.w.isDown){
+	if ((cursors.up.isDown || cursors.w.isDown) && player.position.y >= 32){
 		player.body.velocity.y  = -player.moveSpeed;
 		direction = "U";
 		testV = 1;
 	}
-	if (cursors.down.isDown || cursors.s.isDown) {
+	if ((cursors.down.isDown || cursors.s.isDown)) {
 		player.body.velocity.y  = player.moveSpeed;
 		direction = "D";
 		testV = 1;
@@ -114,8 +119,20 @@ function checkUsedItem(){
 	if(game.input.activePointer.isDown) {
 		console.log("using item");
 		useItem(currentItem, inv_slot);
+		buildInventory(inventory);
 	}
 }
+
+function movecamera(){
+	game.camera.x = player.body.x-game.width/2 - 50*Math.tanh((player.body.x-game.camera.x-game.width/2)/50);
+	game.camera.y = player.body.y-game.height/2 - 50*Math.tanh((player.body.y-game.camera.y-game.height/2)/50);
+		if(player.position.x >= game.world.width){
+			console.log("entered garden");
+			this.game.state.start('gardenstate');
+		}
+
+}
+
 /*
 function checkField(){
 	//console.log("player x: %d, player y: %d", player.position.x, player.position.y);
@@ -132,13 +149,3 @@ function checkField(){
 	}
 }
 */
-
-function movecamera(){
-	game.camera.x = player.body.x-game.width/2 - 50*Math.tanh((player.body.x-game.camera.x-game.width/2)/50);
-	game.camera.y = player.body.y-game.height/2 - 50*Math.tanh((player.body.y-game.camera.y-game.height/2)/50);
-		if(player.position.x >= game.world.width){
-			console.log("entered garden");
-			this.game.state.start('gardenstate');
-		}
-
-}

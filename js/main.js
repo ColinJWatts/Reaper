@@ -191,12 +191,19 @@ Game.townstate.prototype = {
 
 		garden = new Field(game, 10, 10, 800, 32);
 
-		garden.add(Corn, 0, 2, 4);
-		garden.add(Pumpkin, 0, 8, 4);
+		//garden.add(Corn, 0, 2, 4);
+		//garden.add(Pumpkin, 0, 8, 4);
 
 		player = new Player(game, town, 200, 200);
 		gardenTime = 0;
-		//shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
+		I = new Item(game, 600, 210, 'yellow', false, 1, 1);
+		J = new Item(game, 400, 270, 'green', false, 2, 2);
+		J = new Item(game, 400, 270, 'green', false, 2, 2);
+		J = new Item(game, 400, 270, 'green', false, 2, 2);
+		J = new Item(game, 400, 270, 'green', false, 2, 2);
+		J = new Item(game, 400, 270, 'green', false, 2, 2);
+		K = new Item(game, 200, 300, 'magenta', false, 3, 3);
+		shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
 	},
 
 	update : function() {

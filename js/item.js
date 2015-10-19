@@ -19,6 +19,20 @@ function Item(game,x,y,key,inInv,inv_slot,itemNum){
 	items.add(this);
 }
 
+function fromNum(itemNum){
+	switch(itemNum){
+		case 1: 
+			this.key = 'green';//'shovel';
+			break;
+		case 2:
+			this.key = 'blue';//'cornSeed';
+			break;
+		case 3:
+			this.key = 'magenta';//'pumpSeed';
+			break;
+	}
+}
+
 function collectItem (player, item) {
 	if(money < item.cost)
 		return;
@@ -97,6 +111,13 @@ function useShovel(field) {
 
 function plantPlant(field, inv_slot, plant) {
 
+	if(inventory[1][inv_slot] > 0){
+		inventory[1][inv_slot] -= 1;
+	}
+	else {
+		inventory[0][inv_slot] = 0;
+		return;
+	}
 	console.log("Planting...");
 	var mouseX = game.input.mousePointer.x + game.camera.x;
 	var mouseY = game.input.mousePointer.y + game.camera.y;
@@ -106,14 +127,9 @@ function plantPlant(field, inv_slot, plant) {
 	fieldX = field.x;
 	fieldY = field.y;
 
-
 	var x = Math.floor((mouseX - fieldX)/64);
 	var y = Math.floor((mouseY - fieldY)/64);
-	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
+	if(((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
 		field.add(plant, 0, x, y);
-		if(inventory[1][inv_slot] > 0)
-			inventory[1][inv_slot] -= 1;
-		else
-			inventory[0][inv_slot] = 0;
 	}
 }

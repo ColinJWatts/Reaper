@@ -5,12 +5,12 @@ Shop.prototype.key = 'shop';
 Shop.prototype.itemList = [[0],[0]];
 
 function Shop(game, x, y, key, itemList){
-	/*Phaser.Sprite.call(this, game, x, y, key);
+	Phaser.Sprite.call(this, game, x, y, key);
 	game.add.existing(this);
-	game.physics.arcade.enable(this);*/
+	game.physics.arcade.enable(this);
 	this.itemList = itemList;
 
-	var numItems = this.itemList.length;
+	/*var numItems = this.itemList.length;
 	var sizeBox = (game.world.width - 200)/numItems;
 	var yItemsUp = game.world.height/2 - sizeBox/2;
 	var yItemsDown = game.world.height/2 + sizeBox/2;
@@ -44,10 +44,10 @@ function Shop(game, x, y, key, itemList){
 			shop_interface.destroy();
 			game.paused = false;
 		}
-	}
+	}*/
 }
 
-/*Shop.prototype.update = function(){
+Shop.prototype.update = function(){
 	game.physics.arcade.overlap(this, player, buySell);
 }
 
@@ -58,8 +58,22 @@ function buySell(shop, player){
 	var merch = [0];
 	for(var i = 0;i < shop.itemList[0].length;i++){
 		merch[i] = new Item(game, 100 + game.width*i/5, 300, 'white', false, 1, shop.itemList[0][i]);
+		merch[i].key = fromNum(shop.itemList[0][i])
 		merch[i].cost = shop.itemList[1][i];
 	}
 	console.log(merch);
-	shop.destroy();
-}*/
+
+	//push player a bit away from shop so he doesn't automatically trigger overlap again
+	if(direction == 2){
+		player.body.position.x += 10;
+	}
+	if(direction == 0){
+		player.body.position.x -= 10;
+	}
+	if(direction == 1){
+		player.body.position.y += 10;
+	}
+	if(direction == 3){
+		player.body.position.y -= 10;
+	}
+}

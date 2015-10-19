@@ -10,7 +10,7 @@ var items;
 var field;
 var town;
 var gardenTime;
-
+var text1, text2, text3, text4;
 Game = {};
 //**********************************MAIN MENU****************************************
 Game.MainMenu = function(){ }; 
@@ -20,14 +20,52 @@ Game.MainMenu.prototype = {
 	},
 
 	create : function(){
-		game.add.text(16, 16, 'START?', { fontSize: '32px', fill: '#FFFFFF' });
+		text1 = game.add.text(game.world.centerX, game.world.centerY - 200, 'REAPER');
+		text1.fill = '#FFFFFF';
+		text1.fontSize = 60;
+		text1.anchor.setTo(0.5);
+		text2 = game.add.text(game.world.centerX, game.world.centerY - 150, 'resistance is fertile');
+		text2.fontSize = 20;
+		text2.fill = '#FFFFFF';
+		text2.anchor.setTo(0.5);
+		text3 = game.add.text(game.world.centerX, game.world.centerY - 75, 'Start');
+		text3.fontSize = 40;
+		text3.fill = '#FFFFFF';
+		text3.anchor.setTo(0.5);
+		text3.inputEnabled = true;
+		//if(text3.input) {
+			//this.game.state.start("townstate");
+		//}
+		
+		text4 = game.add.text(game.world.centerX, game.world.centerY, 'Instructions');
+		text4.fontSize = 40;
+		text4.fill = '#FFFFFF';
+		text4.anchor.setTo(0.5);
+		text4.inputEnabled = true;
+		text5 = game.add.text(game.world.centerX, game.world.centerY+75, 'Credits');
+		text5.fontSize = 40;
+		text5.fill = '#FFFFFF';
+		text5.anchor.setTo(0.5);
+		text5.inputEnabled = true;
 
 	},
-
+	
 	update : function(){
-		game.input.keyboard.onDownCallback = function(e) {
-				console.log(e.keyCode);
+		text3.events.onInputOver.add(mouseover, this);
+		text3.events.onInputOut.add(off, this);
+		text4.events.onInputOver.add(mouseover, this);
+		text4.events.onInputOut.add(off, this);
+		text5.events.onInputOver.add(mouseover, this);
+		text5.events.onInputOut.add(off, this);
+		if(game.input.activePointer.isDown && text3.fill == '#FF0000')
+			{
 				this.game.state.start("townstate");
+			}
+		function mouseover(text) {
+    		text.fill = '#FF0000';    		
+		}
+		function off(text) {
+			text.fill = '#FFFFFF';
 		}
 	}
 }

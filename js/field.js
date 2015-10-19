@@ -7,7 +7,9 @@ Field.prototype.fieldSizeX = 0;
 Field.prototype.fieldSizeY = 0;
 
 function Field(game, sX, sY, x, y){
-	Phaser.Sprite.call(this, game, x, y, '')
+	Phaser.Sprite.call(this, game, x, y, 'none');
+	game.physics.arcade.enable(this);
+	this.scale.set(sX, sY);
 	this.fieldSizeX = sX;
 	this.fieldSizeY = sY;
 	this.grid = new Array(this.fieldSizeX);

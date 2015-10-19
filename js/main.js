@@ -91,6 +91,7 @@ Game.townstate.prototype = {
 		game.load.image('white', 'assets/white.png');
 		game.load.image('yellow', 'assets/yellow.png');
 		game.load.image('dirt', 'assets/dirt.png');
+		game.load.image('none', 'assets/invisible.png');
 		//game.load.sound('dig', 'assets/sound/dig.mp3');
 	},
 
@@ -114,7 +115,6 @@ Game.townstate.prototype = {
 	},
 
 	update : function() {
-	
 		gardenTime += game.time.elapsed/1000;
 		if(currField == garden){
 			garden.tick(gardenTime);
@@ -129,6 +129,7 @@ Game.townstate.prototype = {
 		game.physics.arcade.overlap(projectiles, projectiles, hitProj);
 		game.physics.arcade.overlap(projectiles, player, hitPlayer);
 		game.physics.arcade.overlap(items, player, collectItem);
+		game.physics.arcade.overlap(player, garden, function(player, garden){currField = garden});
 	}
 }
 

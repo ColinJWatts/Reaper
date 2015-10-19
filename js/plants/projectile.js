@@ -35,10 +35,14 @@ Proj.prototype.update = function(farm, time) {
 	this.move();
 
 	if(this.lifetime <= 0) {
-		this.destroy();
+		this.end();
 	}
 	this.lifetime -= game.time.elapsed/1000;
 
+}
+
+roj.prototype.end = function() {
+	this.destroy();
 }
 
 

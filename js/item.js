@@ -74,21 +74,8 @@ function useItem(itemNum, inv_slot){
 		plantPlant(currField, inv_slot, Corn);
 	if (itemNum == 3)
 		plantPlant(currField, inv_slot, Pumpkin);
-
-
-	/*
-		//Scythe
-		case 2: 
-			useScythe();
-			break;
-		//Gun: useGun(1) = basic gun, useGun(2) = more advanced, etc.
-		case 3: 
-			useGun(1);
-			break;
-		case 4: 
-			useGun(2);
-			break;
-			*/
+	if (itemNum == 4)
+		useScythe();
 }
 
 function useShovel(field) {
@@ -107,6 +94,11 @@ function useShovel(field) {
 	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
 		field.add(Plant, 0, x, y);
 	}
+}
+
+function useScythe(){
+	if(!isScythe)
+		var scythe = projectiles.add(new Scythe(game));
 }
 
 function plantPlant(field, inv_slot, plant) {

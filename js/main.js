@@ -179,7 +179,7 @@ Game.townstate.prototype = {
 		game.load.image('player', 'assets/player.png');
 		game.load.image('scarecrow', 'assets/scarecrow.png');
 		game.load.image('crow', 'assets/crow.png');
-		game.load.image('pumpkin', 'assets/pumkinDrop.png');
+		game.load.image('pumpkin', 'assets/pumpkinDrop.png');
 		game.load.image('cornPlant', 'assets/cornPlant.png');
 		game.load.image('horseman', 'assets/horselessHeadman.png');
 		game.load.image('pumpkinPlant', 'assets/pumpkinPlant.png');
@@ -203,12 +203,13 @@ Game.townstate.prototype = {
 		player = new Player(game, town, 200, 200);
 		gardenTime = 0;
 		I = new Item(game, 600, 210, 'yellow', false, 1, 1);
-		J = new Item(game, 400, 270, 'green', false, 2, 2);
-		J = new Item(game, 400, 270, 'green', false, 2, 2);
-		J = new Item(game, 400, 270, 'green', false, 2, 2);
-		J = new Item(game, 400, 270, 'green', false, 2, 2);
-		J = new Item(game, 400, 270, 'green', false, 2, 2);
-		K = new Item(game, 200, 300, 'magenta', false, 3, 3);
+		J = new Item(game, 400, 270, 'corn', false, 2, 2);
+		J = new Item(game, 400, 270, 'corn', false, 2, 2);
+		J = new Item(game, 400, 270, 'corn', false, 2, 2);
+		J = new Item(game, 400, 270, 'corn', false, 2, 2);
+		J = new Item(game, 400, 270, 'corn', false, 2, 2);
+		K = new Item(game, 200, 300, 'pumpkin', false, 3, 3);
+		K = new Item(game, 250, 250, 'scythe', false, 4, 4);
 		shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
 	},
 

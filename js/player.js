@@ -84,14 +84,19 @@ function buildInventory(i){
 		buttons.add(invButton1);
 	}
 	if(i[0][0] == 2){
-		var invButton2 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'corn');
+		var invButton2 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'cornPlant');
 		invButton2.scale.setTo(.4,.4);
 		buttons.add(invButton2);
-	}/* //etc, continue as needed
+	}
 	if(i[0][j] == 3){
-		var invButton3 = new Image(game, xplace, yplace, 'pumpSeed');
+		var invButton3 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkinPlant');
+		invButton3.scale.setTo(.4,.4);
 		buttons.add(invButton3);
-	}*/
+	}
+	if(i[0][j] == 4){
+		var invButton4 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
+		buttons.add(invButton3);
+	}
     for(var j = 1;j<10;j++){
 		if(i[0][j] == 1){
 			var invButton1 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
@@ -99,14 +104,20 @@ function buildInventory(i){
 			buttons.add(invButton1);
 		}
 		if(i[0][j] == 2){
-			var invButton2 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'corn');
+			var invButton2 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'cornPlant');
 			invButton2.scale.setTo(.4,.4);
 			buttons.add(invButton2);
-		}/*
+		}
 		if(i[0][j] == 3){
-			var invButton3 = new Image(game, xplace, yplace, 'pumpSeed');
+			var invButton3 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkinPlant');
+			invButton3.scale.setTo(.4,.4);
 			buttons.add(invButton3);
-		}*/
+		}
+		if(i[0][j] == 4){
+			var invButton4 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
+			invButton4.scale.setTo(.4,.4);
+			buttons.add(invButton4);
+		}
 	}
 	var inventoryText = i[1][1]+'      '+i[1][2]+'      '+i[1][3]+'      '+i[1][4]+'      '+i[1][5]+'      '+i[1][6]+'      '+i[1][7]+'      '+i[1][8]+'      '+i[1][9]+'      '+i[1][0];
     inventoryUI = game.add.text(game.camera.width/2 - 110 + game.camera.x, game.camera.height - 30 + game.camera.y, inventoryText, { font: '12px Arial', fill: '#fff' });

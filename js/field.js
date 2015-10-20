@@ -40,7 +40,7 @@ Field.prototype.tick = function(time){
 //x and y are grid positions, not world coordinates
 Field.prototype.add = function(plant, age, x, y){
 	if (x >= 0 && x < this.fieldSizeX && y >= 0 && y < this.fieldSizeY){
-		var tmp = new plant(this.game, this, x, y)
+		var tmp = new plant(this.game, this, x, y);
 		tmp.age = age;
 
 		//console.log("PLAAAAAAAANT")
@@ -60,6 +60,18 @@ Field.prototype.add = function(plant, age, x, y){
 		else {
 			tmp.destroy();
 		}
+	}
+}
+
+Field.prototype.place = function(plant, x, y){
+	var tmp = new plant(this.game, this, x, y);
+	if(this.grid[x][y].tag == 'dirt'){
+		this.grid[x][y].destroy();
+		this.grid[x][y] = tmp;
+		return true;
+	} else {
+		tmp.destroy();
+		return false;
 	}
 }
 

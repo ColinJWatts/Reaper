@@ -35,14 +35,19 @@ Scarecrow.prototype.idleMove = function() {
 	var xDiff = this.origin.x - this.position.x;
 	var yDiff = this.origin.y - this.position.y;
 	var distanceToOrigin = Math.sqrt(xDiff*xDiff + yDiff*yDiff);
-	var angleToOrigiin = Math.atan2(yDiff, xDiff);
+	var angleToOrigin = Math.atan2(yDiff, xDiff);
 
-	var speed = this.moveSpeed*(Math.sin(game.time.now/250)+1)
+	var speed = this.moveSpeed*(Math.sin(game.time.now/150)+1)
 
-	this.body.velocity.x = speed*Math.cos(angleToOrigiin)*Math.tanh(distanceToOrigin/10);
-	this.body.velocity.y = speed*Math.sin(angleToOrigiin)*Math.tanh(distanceToOrigin/10);
+	this.body.velocity.x = speed*Math.cos(angleToOrigin)*Math.tanh(distanceToOrigin/10);
+	this.body.velocity.y = speed*Math.sin(angleToOrigin)*Math.tanh(distanceToOrigin/10);
 }
 
 Scarecrow.prototype.attack = function() {
 	projectiles.add(new this.projectile(this.game, this.x, this.y, this));
+}
+
+Scarecrow.prototype.end = function(){
+	projectiles.forEach(function(){if(this.tag == 'crow') this.origin = player;});
+	this.destroy();
 }

@@ -193,6 +193,7 @@ Game.townstate.prototype = {
 		plants = game.add.group();
 		mobs = game.add.group();
 		projectiles = game.add.group();
+		playerProjectiles = game.add.group();
 		items = game.add.group();
 
 		garden = new Field(game, 10, 10, 800, 32);
@@ -210,6 +211,7 @@ Game.townstate.prototype = {
 		J = new Item(game, 400, 270, 'corn', false, 2, 2);
 		K = new Item(game, 200, 300, 'pumpkin', false, 3, 3);
 		K = new Item(game, 250, 250, 'scythe', false, 4, 4);
+		K = new Item(game, 200, 200, 'white', false, 5, 5);
 		shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
 	},
 
@@ -224,11 +226,13 @@ Game.townstate.prototype = {
 		movecamera();
 
 		game.physics.arcade.collide(mobs, mobs);
-		game.physics.arcade.overlap(projectiles, mobs, hitMob);
-		game.physics.arcade.overlap(projectiles, projectiles, hitProj);
+		game.physics.arcade.overlap(playerProjectiles, mobs, hitMob);
+		game.physics.arcade.overlap(projectiles, playerProjectiles, hitProj);
 		game.physics.arcade.overlap(projectiles, player, hitPlayer);
 		game.physics.arcade.overlap(items, player, collectItem);
 		game.physics.arcade.overlap(player, garden, function(player, garden){currField = garden});
+	
+		cleanUp(projectiles);
 	}
 }
 

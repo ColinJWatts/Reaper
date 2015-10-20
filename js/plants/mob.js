@@ -5,7 +5,7 @@ Mob.prototype.moveSpeed = 0;
 Mob.prototype.attackSpeed = 0;
 Mob.prototype.attackRange = 0;
 Mob.prototype.sightRange = 0;
-Mob.prototype.health = 0;
+Mob.prototype.health = 1;
 Mob.prototype.damage = 0;
 Mob.prototype.distanceToPlayer = 0;
 Mob.prototype.angleToPlayer = 0;
@@ -40,7 +40,7 @@ Mob.prototype.update = function(farm, time) {
 	this.attackTimer -= game.time.elapsed/1000;
 
 	if (this.health <= 0) {
-		this.destroy();
+		this.end();
 	}
 
 
@@ -54,7 +54,7 @@ Mob.prototype.idleMove = function() {
 
 }
 
-Mob.prototype.destroy = function(){
+Mob.prototype.end = function(){
 	this.destroy();
 }
 

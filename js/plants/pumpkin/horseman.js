@@ -17,7 +17,7 @@ Horseman.prototype.charge = false;
 function Horseman(game, x, y){
 	Phaser.Sprite.call(this, game, x, y, this.key)
 	this.anchor.set(0.5, 0.5);
-	this.scale.set(2, 2);
+	this.scale.set(1, 1);
 	game.physics.arcade.enable(this);
 	game.add.existing(this);
 }

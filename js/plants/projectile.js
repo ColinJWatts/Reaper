@@ -7,7 +7,7 @@ Proj.prototype.lifetime = 0;
 Proj.prototype.damage = 0;
 Proj.prototype.size = 1;
 Proj.prototype.angle = 0;
-Proj.prototype.isHoming = 0;
+Proj.prototype.isHoming = false;
 Proj.prototype.isPlayers = 0;
 Proj.prototype.isPiercing = 0;
 Proj.prototype.distanceToPlayer = 0;
@@ -41,7 +41,7 @@ Proj.prototype.update = function(farm, time) {
 
 }
 
-roj.prototype.end = function() {
+Proj.prototype.end = function() {
 	this.destroy();
 }
 
@@ -51,27 +51,38 @@ Proj.prototype.move = function() {
 }
 
 function hitMob(projectile, mob){
-	if(projectile.isPlayers != 0){
-		mob.health -= projectile.damage;
-		if(projectile.isPiercing == 0)
-			projectile.destroy();
-	}
+	mob.health -= projectile.damage;
+	if(projectile.isPiercing == 0)
+		projectile.kill();
 }
 
 function hitProj(projectileA, projectileB){
-	if(projectileA.isPlayers != projectileB.isPlayers){
-		if(projectileA.isPiercing == 0)
-			projectileA.destroy();
-		if(projectileB.isPiercing == 0)
-			projectileB.destroy();
-	}
+	if(projectileA.isPiercing == 0)
+		projectileA.kill();
+	if(projectileB.isPiercing == 0)
+		projectileB.kill();
 }
 
 function hitPlayer(projectile, player){
 	console.log("hitPlayer :D");
-	/*if(projectile.isPlayers == 0){
-		//player.health -= projectile.damage;
-		if(projectile.isPiercing == 0)
-			projectile.destroy();
-	}*/
+	health -= projectile.damage;
+	if(projectile.isPiercing == 0)
+		projectile.kill();
+}
+
+
+function cleanUp(group)
+{
+    var aCleanup = [];
+    group.forEachDead(function(item){
+        aCleanup.push(item);
+    });
+    
+    var i = aCleanup.length - 1;
+    while(i > -1)
+    {
+        var getitem = aCleanup[i];
+        getitem.destroy();
+        i--;
+    }
 }

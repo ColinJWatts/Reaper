@@ -76,29 +76,36 @@ function useItem(itemNum, inv_slot){
 		plantPlant(currField, inv_slot, Pumpkin);
 	if (itemNum == 4)
 		useScythe();
+	if (itemNum == 5)
+		useGun();
 }
 
 function useShovel(field) {
+	if(currField != null){
+		console.log("Using shovel...");
+		var mouseX = game.input.mousePointer.x + game.camera.x;
+		var mouseY = game.input.mousePointer.y + game.camera.y;
+		var playerX = player.position.x;
+		var playerY = player.position.y;
 
-	console.log("Using shovel...");
-	var mouseX = game.input.mousePointer.x + game.camera.x;
-	var mouseY = game.input.mousePointer.y + game.camera.y;
-	var playerX = player.position.x;
-	var playerY = player.position.y;
+		fieldX = field.x;
+		fieldY = field.y;
 
-	fieldX = field.x;
-	fieldY = field.y;
-
-	var x = Math.floor((mouseX - fieldX)/64);
-	var y = Math.floor((mouseY - fieldY)/64);
-	if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
-		field.add(Plant, 0, x, y);
+		var x = Math.floor((mouseX - fieldX+32)/64);
+		var y = Math.floor((mouseY - fieldY+32)/64);
+		if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
+			field.add(Plant, 0, x, y);
+		}
 	}
 }
 
 function useScythe(){
 	if(!isScythe)
-		var scythe = projectiles.add(new Scythe(game));
+		playerProjectiles.add(new Scythe(game));
+}
+
+function useGun(){
+	playerProjectiles.add(new Bullet(game));
 }
 
 function plantPlant(field, inv_slot, plant) {
@@ -119,9 +126,11 @@ function plantPlant(field, inv_slot, plant) {
 	fieldX = field.x;
 	fieldY = field.y;
 
-	var x = Math.floor((mouseX - fieldX)/64);
-	var y = Math.floor((mouseY - fieldY)/64);
+	var x = Math.floor((mouseX - fieldX+32)/64);
+	var y = Math.floor((mouseY - fieldY+32)/64);
+
 	if(((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
-		field.add(plant, 0, x, y);
+		if(!field.place(plant, x, y))
+			inventory[1][inv_slot]++;
 	}
 }

@@ -7,7 +7,7 @@ Player.prototype.constructor = Player;
 var cursors;
 var currentItem;
 var direction;
-var currField;
+var currField = null;
 var inventory = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 var invSlot = 1;
 var money = 15;

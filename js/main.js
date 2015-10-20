@@ -230,6 +230,11 @@ Game.townstate.prototype = {
 	},
 
 	update : function() {
+		if(health == 0) {
+			player.body.x = 200;
+			player.body.y = 200;
+			health = 100;
+		}
 		if(!inShop)
 			gardenTime += game.time.elapsed/1000;
 		if(currField == garden){

@@ -55,4 +55,4 @@ Scarecrow.prototype.end = function(){
 Scarecrow.prototype.end = function(){
 	drop = new Item(game, this.body.x, this.body.y, 'corn', false, 0, 10);
 	this.destroy();
-}5
+}

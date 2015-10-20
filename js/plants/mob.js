@@ -21,9 +21,8 @@ function Mob(game, x, y) {
 	game.add.existing(this);
 }
 
-
-
 Mob.prototype.update = function(farm, time) {
+	if(inShop)return;
 	var xDiff = player.x - this.position.x;
 	var yDiff = player.y - this.position.y;
 	this.distanceToPlayer = Math.sqrt(xDiff*xDiff + yDiff*yDiff);

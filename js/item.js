@@ -19,20 +19,6 @@ function Item(game,x,y,key,inInv,inv_slot,itemNum){
 	items.add(this);
 }
 
-function fromNum(itemNum){
-	switch(itemNum){
-		case 1: 
-			this.key = 'green';//'shovel';
-			break;
-		case 2:
-			this.key = 'blue';//'cornSeed';
-			break;
-		case 3:
-			this.key = 'magenta';//'pumpSeed';
-			break;
-	}
-}
-
 function collectItem (player, item) {
 	if(money < item.cost)
 		return;

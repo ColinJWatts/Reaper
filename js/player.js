@@ -12,6 +12,7 @@ var inventory = [[0, 0, 0, 0, 0, 0, 0, 0, 0, 0],[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]];
 var invSlot = 1;
 var money = 15;
 var health = 100;
+var inShop = false;
 Player.prototype.moveSpeed = 150;
 
 function Player(game, field, x, y) {
@@ -59,10 +60,11 @@ function Player(game, field, x, y) {
 }
 
 Player.prototype.update = function() {
-	movePlayer();
-	checkUsedItem();
 	buildInventory(inventory);
 	this.rotation = Math.atan2(this.y - game.input.mousePointer.y - game.camera.y, this.x - game.input.mousePointer.x - game.camera.x) - Math.PI/2;
+	if(inShop)return;
+	movePlayer();
+	checkUsedItem();
 //	checkField();
 }
 
@@ -88,14 +90,24 @@ function buildInventory(i){
 		invButton2.scale.setTo(.4,.4);
 		buttons.add(invButton2);
 	}
-	if(i[0][j] == 3){
+	if(i[0][0] == 3){
 		var invButton3 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkinPlant');
 		invButton3.scale.setTo(.4,.4);
 		buttons.add(invButton3);
 	}
-	if(i[0][j] == 4){
+	if(i[0][0] == 4){
 		var invButton4 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
 		buttons.add(invButton3);
+	}
+	if(i[0][0] == 10){
+		var invButton5 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'corn');
+		invButton5.scale.setTo(.4,.4);
+		buttons.add(invButton5);
+	}
+	if(i[0][0] == 11){
+		var invButton6 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkin');
+		invButton6.scale.setTo(.4,.4);
+		buttons.add(invButton6);
 	}
     for(var j = 1;j<10;j++){
 		if(i[0][j] == 1){

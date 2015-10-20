@@ -7,10 +7,75 @@ Shop.prototype.itemList = [[0],[0]];
 function Shop(game, x, y, key, itemList){
 	Phaser.Sprite.call(this, game, x, y, key);
 	game.add.existing(this);
+	this.anchor.setTo(0.5, 0.5);
 	game.physics.arcade.enable(this);
 	this.itemList = itemList;
+}
 
-	/*var numItems = this.itemList.length;
+Shop.prototype.update = function(){
+	if(!inShop)
+		game.physics.arcade.overlap(this, player, buySell);
+}
+
+function buySell(shop, player){
+	merch = game.add.group();
+	invButtons = game.add.group();
+	exitButton = game.add.button(game.width/2 - 372/2, game.height-150, 'exitButton', onPress, this);
+	inShop = true;
+	player.body.velocity.x = 0;
+	player.body.velocity.y = 0;
+	for(var i = 0;i < shop.itemList[0].length;i++){
+		merch.add(game.add.button(100 + (game.width-200)*(i+.5)/shop.itemList[0].length, game.height/2 - 50, getKey(shop.itemList[0][i]), capitalism, this));
+	}
+	for(var i = 1;i < 10;i++){
+		invButtons.add(game.add.button(100 + (game.width-200)*(i-.5)/10, game.height/2 + 50, getKey(inventory[0][i]), capitalism, this));
+	}
+	invButtons.add(game.add.button(100 + 9.5*(game.width-200), game.height/2 + 50, getKey(inventory[0][0]), capitalism, this));
+	//push player a bit away from shop so he doesn't automatically trigger overlap again
+	if(direction == 2){
+		player.body.position.x += 2;
+	}
+	if(direction == 0){
+		player.body.position.x -= 2;
+	}
+	if(direction == 1){
+		player.body.position.y += 2;
+	}
+	if(direction == 3){
+		player.body.position.y -= 2;
+	}
+}
+
+function onPress(){
+	console.log("button pressed")
+	inShop = false;
+	exitButton.destroy();
+	merch.destroy();
+	invButtons.destroy();
+}
+
+function capitalism(){
+	console.log("CAPITALISM")
+}
+
+function getKey(itemNum){
+	switch(itemNum){
+		case 1: 
+			this.key = 'shovel';
+			break;
+		case 2:
+			this.key = 'cornPlant';
+			break;
+		case 3:
+			this.key = 'pumpkinPlant';
+			break;
+		default:
+			this.key = 'invisible';
+			break;
+	}
+	return this.key;
+}
+/*var numItems = this.itemList.length;
 	var sizeBox = (game.world.width - 200)/numItems;
 	var yItemsUp = game.world.height/2 - sizeBox/2;
 	var yItemsDown = game.world.height/2 + sizeBox/2;
@@ -45,35 +110,3 @@ function Shop(game, x, y, key, itemList){
 			game.paused = false;
 		}
 	}*/
-}
-
-Shop.prototype.update = function(){
-	game.physics.arcade.overlap(this, player, buySell);
-}
-
-function buySell(shop, player){
-	//pause game (or at least growing of plants, etc) function: talk to Quinn
-	//currently the game will create a shop for each frame the player is over the shop;
-	//when the pause is implemented this should fix itself so I'm not worrying about it right now
-	var merch = [0];
-	for(var i = 0;i < shop.itemList[0].length;i++){
-		merch[i] = new Item(game, 100 + game.width*i/5, 300, 'white', false, 1, shop.itemList[0][i]);
-		merch[i].key = fromNum(shop.itemList[0][i])
-		merch[i].cost = shop.itemList[1][i];
-	}
-	console.log(merch);
-
-	//push player a bit away from shop so he doesn't automatically trigger overlap again
-	if(direction == 2){
-		player.body.position.x += 10;
-	}
-	if(direction == 0){
-		player.body.position.x -= 10;
-	}
-	if(direction == 1){
-		player.body.position.y += 10;
-	}
-	if(direction == 3){
-		player.body.position.y -= 10;
-	}
-}

@@ -6,7 +6,7 @@ var mobs;
 var plants;
 var projectiles;
 var items;
-
+var grass;
 var field;
 var town;
 var gardenTime;
@@ -184,7 +184,8 @@ Game.townstate.prototype = {
 		game.load.image('cornPlant', 'assets/cornPlant.png');
 		game.load.image('horseman', 'assets/horselessHeadman.png');
 		game.load.image('pumpkinPlant', 'assets/pumpkinPlant.png');
-		
+		game.load.image('grass', 'assets/grass.png');
+		game.load.image('exitButton', 'assets/exitButton.png');
 
 		game.load.audio('dig', 'assets/sound/dig.mp3');
 		game.load.audio('plant', 'assets/sound/plant.mp3');
@@ -198,6 +199,9 @@ Game.townstate.prototype = {
 
  	create : function() {
  		game.world.setBounds(0, 0, 4000, 800);
+
+ 		grass = game.add.tileSprite(0, 0, 4000, 800, 'grass');
+
  		garden = new Field(game, 10, 10, 800, 32);
 		plants = game.add.group();
 		garden.fillWithDirt();
@@ -226,7 +230,8 @@ Game.townstate.prototype = {
 	},
 
 	update : function() {
-		gardenTime += game.time.elapsed/1000;
+		if(!inShop)
+			gardenTime += game.time.elapsed/1000;
 		if(currField == garden){
 			garden.tick(gardenTime);
 			gardenTime = 0;

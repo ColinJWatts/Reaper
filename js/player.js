@@ -80,36 +80,10 @@ function buildInventory(i){
     currentItemUI.destroy();
     buttons.removeAll();
     //Goddamn 0 case
-    if(i[0][0] == 1){
-		var invButton1 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
-		invButton1.scale.setTo(.4,.4);
-		buttons.add(invButton1);
-	}
-	if(i[0][0] == 2){
-		var invButton2 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'cornPlant');
-		invButton2.scale.setTo(.4,.4);
-		buttons.add(invButton2);
-	}
-	if(i[0][0] == 3){
-		var invButton3 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkinPlant');
-		invButton3.scale.setTo(.4,.4);
-		buttons.add(invButton3);
-	}
-	if(i[0][0] == 4){
-		var invButton4 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
-		buttons.add(invButton3);
-	}
-	if(i[0][0] == 10){
-		var invButton5 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'corn');
-		invButton5.scale.setTo(.4,.4);
-		buttons.add(invButton5);
-	}
-	if(i[0][0] == 11){
-		var invButton6 = game.add.image(game.camera.width/2 - 140 + 265 + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkin');
-		invButton6.scale.setTo(.4,.4);
-		buttons.add(invButton6);
-	}
-    for(var j = 1;j<10;j++){
+    for(var p = 0;p<10;p++){
+    	var j = p;
+    	if(p == 0)
+    		j = 10;
 		if(i[0][j] == 1){
 			var invButton1 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'shovel');
 			invButton1.scale.setTo(.4,.4);
@@ -137,6 +111,11 @@ function buildInventory(i){
 		}
 		if(i[0][j] == 11){
 			var invButton6 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkin');
+			invButton6.scale.setTo(.4,.4);
+			buttons.add(invButton6);
+		}
+		if(i[0][j] == 5){
+			var invButton6 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'black');
 			invButton6.scale.setTo(.4,.4);
 			buttons.add(invButton6);
 		}

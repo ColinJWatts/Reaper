@@ -22,7 +22,11 @@ function Mob(game, x, y) {
 }
 
 Mob.prototype.update = function(farm, time) {
-	if(inShop)return;
+	if(inShop){
+		this.body.velocity.x = 0;
+		this.body.velocity.y = 0;
+		return;
+	}
 	var xDiff = player.x - this.position.x;
 	var yDiff = player.y - this.position.y;
 	this.distanceToPlayer = Math.sqrt(xDiff*xDiff + yDiff*yDiff);

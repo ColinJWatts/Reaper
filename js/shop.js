@@ -25,37 +25,81 @@ function buySell(shop, player){
 	player.body.velocity.x = 0;
 	player.body.velocity.y = 0;
 	for(var i = 0;i < shop.itemList[0].length;i++){
-		merch.add(game.add.button(100 + (game.width-200)*(i+.5)/shop.itemList[0].length, game.height/2 - 50, getKey(shop.itemList[0][i]), capitalism, this));
+		shopButton = game.add.button(100 + (game.width-200)*(i+.5)/shop.itemList[0].length, game.height/2 - 50, getKey(shop.itemList[0][i]))
+		shopButton.onInputDown.add(function(){down(i, shop.itemList[0][i], false, priceFor(shop.itemList[0][i]))}, this);
+		merch.add(shopButton);
 	}
-	for(var i = 1;i < 10;i++){
-		invButtons.add(game.add.button(100 + (game.width-200)*(i-.5)/10, game.height/2 + 50, getKey(inventory[0][i]), capitalism, this));
+	var j = 0;
+	for(var i = 0;i < 10;i++){
+		if(inventory[0][i] != 0)
+			j++;
 	}
-	invButtons.add(game.add.button(100 + 9.5*(game.width-200), game.height/2 + 50, getKey(inventory[0][0]), capitalism, this));
+	for(var i = 1;i <= j;i++){
+		invButton = game.add.button(100 + (game.width-200)*(i-.5)/j, game.height/2 + 50, getKey(inventory[0][i]))
+		invButton.onInputDown.add(function(){down(i, inventory[0][i], true, priceFor(inventory[0][i]))}, this);
+		invButtons.add(invButton);
+	}
 	//push player a bit away from shop so he doesn't automatically trigger overlap again
 	if(direction == 2){
-		player.body.position.x += 2;
+		player.body.position.x += 5;
 	}
 	if(direction == 0){
-		player.body.position.x -= 2;
+		player.body.position.x -= 5;
 	}
 	if(direction == 1){
-		player.body.position.y += 2;
+		player.body.position.y += 5;
 	}
 	if(direction == 3){
-		player.body.position.y -= 2;
+		player.body.position.y -= 5;
+	}
+}
+
+function down(index, itemNum, inInv, cost) {
+    if(inInv){
+    	money += cost;
+		if(inventory[1][index] <= 1){
+			inventory[0][index] = 0;
+			inventory[1][index] = 0;
+		}
+		else {
+			inventory[1][index] -= 1;
+		}
+		var i = 0;
+		while(shop.itemList[0][i] != 0 && i < shop.itemList[0].length){
+			i++;
+		}
+		shop.itemList[0][i] = itemNum;
+		shop.itemList[1][i] = priceFor(itemNum);
+	}
+	else{
+
+    }
+}
+
+function priceFor(itemNum){
+	switch(itemNum){
+		case 0:
+			return 0;
+		case 1:
+			return 20;
+		case 2:
+			return 2;
+		case 3:
+			return 3;
+		case 4:
+			return 40;
+		case 10:
+			return 10;
+		case 11:
+			return 15;
 	}
 }
 
 function onPress(){
-	console.log("button pressed")
 	inShop = false;
 	exitButton.destroy();
 	merch.destroy();
 	invButtons.destroy();
-}
-
-function capitalism(){
-	console.log("CAPITALISM")
 }
 
 function getKey(itemNum){
@@ -69,44 +113,18 @@ function getKey(itemNum){
 		case 3:
 			this.key = 'pumpkinPlant';
 			break;
+		case 4:
+			this.key = 'scythe';
+			break;
+		case 10:
+			this.key = 'corn';
+			break;
+		case 11:
+			this.key = 'pumpkin';
+			break;
 		default:
-			this.key = 'invisible';
+			this.key = 'none';
 			break;
 	}
 	return this.key;
 }
-/*var numItems = this.itemList.length;
-	var sizeBox = (game.world.width - 200)/numItems;
-	var yItemsUp = game.world.height/2 - sizeBox/2;
-	var yItemsDown = game.world.height/2 + sizeBox/2;
-	var xItems = [];
-	for(var i = 0;i<numItems;i++){
-		xItems[i] = 100 + sizeBox*i;
-	}
-
-	shop_label = game.add.text(x, y, 'Buying and Selling', { font: '10px Arial', fill: '#fff' });
-	shop_label.inputEnabled = true;
-	shop_label.events.onInputUp.add(function () {
-		// Right now this is a "click on the shop to buy/sell stuff" kind of shop
-		// I still have the functionality for a "walk into the shop to buy/sell stuff" shop, commented out
-		game.paused = true;
-
-		shop_interface = game.add.sprite(game.world.width/2, game.world.height/2, key);
-		shop_interface.anchor.setTo(0.5, 0.5);
-	});
-
-	game.input.onDown.add(inShop, this);
-	
-	function inShop(event){
-		if(game.paused) {
-			console.log('I am a test\nFEAR ME\n');
-			if(event.x > xItems[0] && event.x < game.world.width - 100 && event.y > yItemsUp && event.y < yItemsDown){
-				var choice = Math.floor((event.x - xItems[0])/sizeBox);
-				console.log(choice);
-			}
-		}
-		else {
-			shop_interface.destroy();
-			game.paused = false;
-		}
-	}*/

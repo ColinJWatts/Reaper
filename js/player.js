@@ -164,6 +164,8 @@ function movePlayer() {
 	}
 }
 
+var mDown = false;
+var prevDown = false;
 function checkUsedItem(){
 	//checks if the player is using an item at any given moment
 	if(cursors.k0.justPressed(1)) {
@@ -207,7 +209,14 @@ function checkUsedItem(){
 		invSlot = 9;
 	}
 
-	if(game.input.activePointer.isDown) { //Try to make 1 plant/click but not a priority
+	if(game.input.activePointer.isDown) {
+		prevDown = mDown;
+		mDown = true;
+	} else {
+		mDown = false;
+		prevDown = false;
+	}
+	if(mDown && !prevDown){
 		console.log("using item");
 		useItem(currentItem, invSlot);
 		buildInventory(inventory);
@@ -221,7 +230,6 @@ function movecamera(){
 			console.log("entered garden");
 			this.game.state.start('gardenstate');
 		}
-
 }
 
 /*

@@ -7,7 +7,7 @@ Bullet.prototype.damage = 1;
 Bullet.prototype.size = 0.2;
 Bullet.prototype.isHoming = 0;
 Bullet.prototype.isPlayers = 1;
-Bullet.prototype.isPiercing = 0;
+Bullet.prototype.isPiercing = false;
 Bullet.prototype.key = 'black';
 Bullet.prototype.tag = "Bullet";
 function Bullet(game) {

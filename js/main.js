@@ -173,7 +173,7 @@ Game.townstate.prototype = {
 		game.load.image('dirt', 'assets/dirt.png');
 		game.load.image('none', 'assets/invisible.png');
 
-
+		game.load.image('field', 'assets/FuryDirt.jpg');
 		game.load.image('corn', 'assets/corn.png');
 		game.load.image('scythe', 'assets/scythe.png');
 		game.load.image('player', 'assets/player.png');
@@ -183,20 +183,24 @@ Game.townstate.prototype = {
 		game.load.image('cornPlant', 'assets/cornPlant.png');
 		game.load.image('horseman', 'assets/horselessHeadman.png');
 		game.load.image('pumpkinPlant', 'assets/pumpkinPlant.png');
-		//game.load.sound('dig', 'assets/sound/dig.mp3');
+		
+
+		game.load.audio('dig', 'assets/sound/dig.mp3');
+		game.load.audio('plant', 'assets/sound/plant.mp3');
 	},
 
 
  	create : function() {
  		game.world.setBounds(0, 0, 4000, 800);
-
+ 		garden = new Field(game, 10, 10, 800, 32);
 		plants = game.add.group();
+		garden.fillWithDirt();
 		mobs = game.add.group();
 		projectiles = game.add.group();
 		playerProjectiles = game.add.group();
 		items = game.add.group();
 
-		garden = new Field(game, 10, 10, 800, 32);
+		
 
 		//garden.add(Corn, 0, 2, 4);
 		//garden.add(Pumpkin, 0, 8, 4);
@@ -211,7 +215,7 @@ Game.townstate.prototype = {
 		J = new Item(game, 400, 270, 'corn', false, 2, 2);
 		K = new Item(game, 200, 300, 'pumpkin', false, 3, 3);
 		K = new Item(game, 250, 250, 'scythe', false, 4, 4);
-		K = new Item(game, 200, 200, 'white', false, 5, 5);
+		K = new Item(game, 200, 400, 'white', false, 5, 5);
 		shop = new Shop(game, 400, 200, 'blue', [[1, 2, 3], [5, 10, 20]]);
 	},
 

@@ -10,7 +10,7 @@ Plant.prototype.lastSpread = 0;
 Plant.prototype.playerDamage = 0;
 Plant.prototype.farmX = 0;
 Plant.prototype.farmY = 0;
-Plant.prototype.key = 'dirt';
+Plant.prototype.key = '';
 Plant.prototype.tag = 'dirt';
 Plant.prototype.spawnMob = Mob;
 Plant.prototype.mob = null;
@@ -23,7 +23,6 @@ function Plant(game, field, x, y){
 	this.farmX = x;
 	this.farmY = y;
 	this.age = 0;
-	this.anchor.set(0.5, 0.5);
 	plants.add(this);
 	//console.log("added plant");
 }

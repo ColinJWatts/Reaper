@@ -3,12 +3,12 @@ Crow.prototype = Object.create(Proj.prototype);
 Crow.prototype.constructor = Crow;
 Crow.prototype.key = "crow";
 Crow.prototype.moveSpeed = 300;
-Crow.prototype.lifetime = 9;
-Crow.prototype.damage = 4;
+Crow.prototype.lifetime = 5;
+Crow.prototype.damage = 1;
 Crow.prototype.size = 0.5;
 Crow.prototype.origin = null;
 Crow.prototype.distDiff = 0;
-Crow.prototype.isPiercing = 0;
+Crow.prototype.isPiercing = false;
 
 function Crow(game, x, y, origin){
 	Phaser.Sprite.call(this, game, x, y, this.key);

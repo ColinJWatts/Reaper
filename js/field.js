@@ -7,11 +7,16 @@ Field.prototype.fieldSizeX = 0;
 Field.prototype.fieldSizeY = 0;
 
 function Field(game, sX, sY, x, y){
-	Phaser.Sprite.call(this, game, x, y, 'none');
+	Phaser.Sprite.call(this, game, x, y, 'field');
 	game.physics.arcade.enable(this);
-	this.scale.set(sX, sY);
+	this.scale.set(sX/800*64, sY/600*64);
 	this.fieldSizeX = sX;
 	this.fieldSizeY = sY;
+	game.add.existing(this);
+	
+}
+
+Field.prototype.fillWithDirt = function(){
 	this.grid = new Array(this.fieldSizeX);
 	//console.log("created grid x");
 	for(var i = 0; i < this.fieldSizeX; i++){
@@ -22,11 +27,7 @@ function Field(game, sX, sY, x, y){
 			//console.log("created grid[" + i + "][" + j + "]");
 		}
 	}
-	game.add.existing(this);
-	
 }
-
-
 
 //updates each plant tile in the field
 Field.prototype.tick = function(time){

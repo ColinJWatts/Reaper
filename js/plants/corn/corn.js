@@ -14,7 +14,6 @@ function Corn(game, field, x, y){
 	this.field = field;
 	this.farmX = x;
 	this.farmY = y;
-	this.anchor.set(0.5, 0.5);
 	plants.add(this);
 	//console.log("added examplePlant");
 }

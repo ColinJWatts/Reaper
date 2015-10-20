@@ -9,7 +9,7 @@ Proj.prototype.size = 1;
 Proj.prototype.angle = 0;
 Proj.prototype.isHoming = false;
 Proj.prototype.isPlayers = 0;
-Proj.prototype.isPiercing = 0;
+Proj.prototype.isPiercing = false;
 Proj.prototype.distanceToPlayer = 0;
 Proj.prototype.angleToPlayer = 0;
 Proj.prototype.key = 'blue';
@@ -52,21 +52,22 @@ Proj.prototype.move = function() {
 
 function hitMob(projectile, mob){
 	mob.health -= projectile.damage;
-	if(projectile.isPiercing == 0)
+	if(!projectile.isPiercing)
 		projectile.kill();
 }
 
 function hitProj(projectileA, projectileB){
-	if(projectileA.isPiercing == 0)
+	console.log("womp");
+	if(!projectileA.isPiercing)
 		projectileA.kill();
-	if(projectileB.isPiercing == 0)
+	if(!projectileB.isPiercing)
 		projectileB.kill();
 }
 
-function hitPlayer(projectile, player){
+function hitPlayer(player, projectile){
 	console.log("hitPlayer :D");
 	health -= projectile.damage;
-	if(projectile.isPiercing == 0)
+	if(!projectile.isPiercing)
 		projectile.kill();
 }
 

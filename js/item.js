@@ -91,9 +91,10 @@ function useShovel(field) {
 		fieldX = field.x;
 		fieldY = field.y;
 
-		var x = Math.floor((mouseX - fieldX+32)/64);
-		var y = Math.floor((mouseY - fieldY+32)/64);
+		var x = Math.floor((mouseX - fieldX)/64);
+		var y = Math.floor((mouseY - fieldY)/64);
 		if( ((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
+			digSound = game.sound.play('dig');
 			field.add(Plant, 0, x, y);
 		}
 	}
@@ -109,28 +110,32 @@ function useGun(){
 }
 
 function plantPlant(field, inv_slot, plant) {
+	if (currField != null){
+		if(inventory[1][inv_slot] > 0){
+			inventory[1][inv_slot] -= 1;
+		}
+		else {
+			inventory[0][inv_slot] = 0;
+			return;
+		}
 
-	if(inventory[1][inv_slot] > 0){
-		inventory[1][inv_slot] -= 1;
-	}
-	else {
-		inventory[0][inv_slot] = 0;
-		return;
-	}
-	console.log("Planting...");
-	var mouseX = game.input.mousePointer.x + game.camera.x;
-	var mouseY = game.input.mousePointer.y + game.camera.y;
-	var playerX = player.position.x;
-	var playerY = player.position.y;
+		console.log("Planting...");
+		var mouseX = game.input.mousePointer.x + game.camera.x;
+		var mouseY = game.input.mousePointer.y + game.camera.y;
+		var playerX = player.position.x;
+		var playerY = player.position.y;
 
-	fieldX = field.x;
-	fieldY = field.y;
+		fieldX = field.x;
+		fieldY = field.y;
 
-	var x = Math.floor((mouseX - fieldX+32)/64);
-	var y = Math.floor((mouseY - fieldY+32)/64);
+		var x = Math.floor((mouseX - fieldX)/64);
+		var y = Math.floor((mouseY - fieldY)/64);
 
-	if(((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
-		if(!field.place(plant, x, y))
-			inventory[1][inv_slot]++;
+		if(((mouseX > playerX && playerX+96>mouseX) || (mouseX < playerX && playerX-96<mouseX)) && ((mouseY > playerY && playerY+96>mouseY) || (mouseY<playerY && playerY-96<mouseY))) {
+			if(!field.place(plant, x, y))
+				inventory[1][inv_slot]++;
+			else
+				digSound = game.sound.play('plant');
+		} 
 	}
 }

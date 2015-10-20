@@ -187,6 +187,11 @@ Game.townstate.prototype = {
 
 		game.load.audio('dig', 'assets/sound/dig.mp3');
 		game.load.audio('plant', 'assets/sound/plant.mp3');
+		game.load.audio('scythe', 'assets/sound/scythe.mp3');
+		game.load.audio('gun', 'assets/sound/gun.mp3');
+		game.load.audio('caw', 'assets/sound/caw.mp3');
+		game.load.audio('whinny', 'assets/sound/whinny.mp3');
+		game.load.audio('hooves', 'assets/sound/hooves.mp3');
 	},
 
 

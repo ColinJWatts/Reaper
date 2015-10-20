@@ -78,6 +78,11 @@ function useItem(itemNum, inv_slot){
 		useScythe();
 	if (itemNum == 5)
 		useGun();
+	if(itemNum == 10)
+		console.log("use corn");
+	if(itemNum == 11)
+		console.log("use pumpkin");
+
 }
 
 function useShovel(field) {
@@ -101,12 +106,15 @@ function useShovel(field) {
 }
 
 function useScythe(){
-	if(!isScythe)
+	if(!isScythe){
 		playerProjectiles.add(new Scythe(game));
+		game.sound.play('scythe');
+	}
 }
 
 function useGun(){
 	playerProjectiles.add(new Bullet(game));
+	game.sound.play('gun');
 }
 
 function plantPlant(field, inv_slot, plant) {

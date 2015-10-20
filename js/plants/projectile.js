@@ -67,6 +67,8 @@ function hitProj(projectileA, projectileB){
 function hitPlayer(player, projectile){
 	console.log("hitPlayer :D");
 	health -= projectile.damage;
+	if (projectile.tag == "crow")
+		game.sound.play('caw');
 	if(!projectile.isPiercing)
 		projectile.kill();
 }

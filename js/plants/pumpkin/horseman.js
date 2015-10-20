@@ -20,6 +20,7 @@ function Horseman(game, x, y){
 	this.scale.set(1, 1);
 	game.physics.arcade.enable(this);
 	game.add.existing(this);
+	game.sound.play('whinny');
 }
 
 Horseman.prototype.moveTowardPlayer = function() {
@@ -28,6 +29,7 @@ Horseman.prototype.moveTowardPlayer = function() {
 		this.rotation = this.angleToPlayer;
 		this.body.velocity.x = this.moveSpeed*Math.cos(this.angleToPlayer);
 		this.body.velocity.y = this.moveSpeed*Math.sin(this.angleToPlayer);
+		game.sound.play('hooves');
 	}
 }
 
@@ -40,4 +42,9 @@ Horseman.prototype.idleMove = function() {
 
 Horseman.prototype.attack = function() {
 	projectiles.add(new this.projectile(this.game, this.x, this.y, this.angleToPlayer));
+}
+
+Horseman.prototype.end = function(){
+	drop = new Item(game, this.body.x, this.body.y, 'pumpkin', false, 9, 11);
+	this.destroy();
 }

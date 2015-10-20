@@ -173,6 +173,7 @@ Game.townstate.prototype = {
 		game.load.image('dirt', 'assets/dirt.png');
 		game.load.image('none', 'assets/invisible.png');
 
+		game.load.image('shovel', 'assets/shovel.png');
 		game.load.image('field', 'assets/FuryDirt.jpg');
 		game.load.image('corn', 'assets/corn.png');
 		game.load.image('scythe', 'assets/scythe.png');
@@ -212,7 +213,7 @@ Game.townstate.prototype = {
 
 		player = new Player(game, town, 200, 200);
 		gardenTime = 0;
-		I = new Item(game, 600, 210, 'yellow', false, 1, 1);
+		I = new Item(game, 600, 210, 'shovel', false, 1, 1);
 		J = new Item(game, 400, 270, 'corn', false, 2, 2);
 		J = new Item(game, 400, 270, 'corn', false, 2, 2);
 		J = new Item(game, 400, 270, 'corn', false, 2, 2);

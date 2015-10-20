@@ -99,7 +99,7 @@ function buildInventory(i){
 	}
     for(var j = 1;j<10;j++){
 		if(i[0][j] == 1){
-			var invButton1 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
+			var invButton1 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'shovel');
 			invButton1.scale.setTo(.4,.4);
 			buttons.add(invButton1);
 		}
@@ -117,6 +117,16 @@ function buildInventory(i){
 			var invButton4 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'scythe');
 			invButton4.scale.setTo(.4,.4);
 			buttons.add(invButton4);
+		}
+		if(i[0][j] == 10){
+			var invButton5 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'corn');
+			invButton5.scale.setTo(.4,.4);
+			buttons.add(invButton5);
+		}
+		if(i[0][j] == 11){
+			var invButton6 = game.add.image(game.camera.width/2 - 140 + 26.5*j + game.camera.x, game.camera.height - 60 + game.camera.y, 'pumpkin');
+			invButton6.scale.setTo(.4,.4);
+			buttons.add(invButton6);
 		}
 	}
 	var inventoryText = i[1][1]+'      '+i[1][2]+'      '+i[1][3]+'      '+i[1][4]+'      '+i[1][5]+'      '+i[1][6]+'      '+i[1][7]+'      '+i[1][8]+'      '+i[1][9]+'      '+i[1][0];
